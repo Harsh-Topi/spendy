@@ -1,0 +1,46 @@
+.spendingContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.optionContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 25px;
+}
+
+.dayContainer button {
+  color: #1F65A6;
+}
+
+.weekContainer button {
+  color: #328FF8;
+}
+
+.monthContainer button {
+  color: #76C3FC;
+}
+
+.chartContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.spendButton {
+  background: light-gray;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.spendButton:active {
+  background: #e4f4fe;
+}
