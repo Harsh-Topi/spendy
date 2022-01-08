@@ -23,18 +23,17 @@ const LimitSet = ({ prevStep, nextStep, handleChange, values }) => {
     let d_limit = document.getElementById('dLimit').value
     let w_limit = document.getElementById('wLimit').value
     let m_limit = document.getElementById('mLimit').value
-    // TODO: validate daily, weekly, and monthly limits
-    chrome_data.limits = {
-      daily: d_limit,
-      weekly: w_limit,
-      monthly: m_limit
+    if (d_limit !== '' && w_limit !== '' && m_limit !== '') {
+      chrome_data.limits = {
+        daily: d_limit,
+        weekly: w_limit,
+        monthly: m_limit
+      }
+      chrome.storage.sync.set(chrome_data)
+      nextStep();
+    } else {
+      // TODO: notify user
     }
-    chrome.storage.sync.set(chrome_data)
-    chrome.storage.sync.get(null, (data) => {
-      console.log(data)
-    })
-    // TODO: go to home page page
-    nextStep();
   }
 
   return (

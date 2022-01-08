@@ -23,7 +23,7 @@ const WhoAreYou = ({ prevStep, nextStep, handleChange, values }) => {
     let firstName = document.getElementById('firstName').value
     let email = document.getElementById('email').value
     let confirm_email = document.getElementById('confirmEmail').value
-    if (confirm_email === email) {
+    if (confirm_email === email && email !== '' && firstName !== '') {
       chrome_data.user_info = {
         first_name: firstName,
         email: email

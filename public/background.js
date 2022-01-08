@@ -12,7 +12,3 @@ chrome.runtime.onInstalled.addListener(async () => {
         transaction_info: {}
     });
 });
-
-chrome.storage.sync.get(null, (data) => {
-    console.log(data)
-})

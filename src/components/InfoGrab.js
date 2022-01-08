@@ -11,9 +11,9 @@ export default class InfoGrab extends Component {
     step: 1,
     firstName: '',
     email: '',
-    dLimit: '',
-    wLimit: '',
-    mLimit: '',
+    dLimit: 500,
+    wLimit: 1000,
+    mLimit: 5000,
   }
 
   prevStep = () => {
@@ -24,7 +24,6 @@ export default class InfoGrab extends Component {
   nextStep = () => {
     const { step } = this.state;
     this.setState({ step: step + 1 });
-    console.log(this.state)
   }
 
   handleChange = input => event => {
