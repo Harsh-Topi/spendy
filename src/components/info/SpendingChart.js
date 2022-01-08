@@ -6,7 +6,6 @@ const colors = ["#1F65A6", "#76C3FC", "#E81E1E"]
 
 const SpendingChart = ({limit, amountSpent, option}) => {
   const percent = (amountSpent / limit) * 100;
-  console.log(percent)
   const pieValue = 100 - percent;
 
   return (
