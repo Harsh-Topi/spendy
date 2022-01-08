@@ -20,24 +20,24 @@ const LimitSet = ({ prevStep, nextStep, handleChange, values }) => {
       <div className="mainContainer">
         <div className="header">
           <button onClick={Previous} className="headerBackButton">
-                        &lt; Back
+            &lt; Back
           </button>
         </div>
         <div className="formContainer">
           <span className="title">Set some limits.</span>
           <div className="inputs">
             <label htmlFor="dLimit" className="inputLabel">
-                            Daily Limit
+              Daily Limit
             </label>
-            <input className="input" type="text" id="dLimit" name="dLimit" />
+            <input defaultValue={values.dLimit} onChange={handleChange('dLimit')} className="input" type="text" id="dLimit" name="dLimit" />
             <label htmlFor="wLimit" className="inputLabel">
-                            Weekly Limit
+              Weekly Limit
             </label>
-            <input className="input" type="text" id="wLimit" name="wLimit" />
+            <input defaultValue={values.wLimit} onChange={handleChange('wLimit')} className="input" type="text" id="wLimit" name="wLimit" />
             <label htmlFor="mLimit" className="inputLabel">
-                            Monthly Limit
+              Monthly Limit
             </label>
-            <input className="input" type="text" id="mLimit" name="mLimit" />
+            <input defaultValue={values.mLimit} onChange={handleChange('mLimit')} className="input" type="text" id="mLimit" name="mLimit" />
           </div>
           <div className="buttonContainer">
             <button onClick={Continue} className="button">Next</button>

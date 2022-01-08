@@ -1,5 +1,6 @@
+import React from 'react';
 import './App.css';
-import InfoGrab from './components/InfoGrab'
+import InfoGrab from './components/InfoGrab';
 
 function App() {
   return (
