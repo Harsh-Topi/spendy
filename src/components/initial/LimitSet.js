@@ -1,17 +1,39 @@
+/*global chrome*/
 import React from 'react'
 import '../../styles/initial/DataCollection.css'
 
-
 const LimitSet = ({ prevStep, nextStep, handleChange, values }) => {
+
+  const chrome_data = {}
+  chrome.storage.sync.get(null, (data) => {
+    Object.assign(chrome_data, {
+      user_info: data.user_info,
+      limits: data.limits,
+      transaction_info: data.transaction_info
+    })
+  })
 
   const Previous = e => {
     e.preventDefault();
     prevStep();
   }
 
-
   const Continue = e => {
     e.preventDefault();
+    let d_limit = document.getElementById('dLimit').value
+    let w_limit = document.getElementById('wLimit').value
+    let m_limit = document.getElementById('mLimit').value
+    // TODO: validate daily, weekly, and monthly limits
+    chrome_data.limits = {
+      daily: d_limit,
+      weekly: w_limit,
+      monthly: m_limit
+    }
+    chrome.storage.sync.set(chrome_data)
+    chrome.storage.sync.get(null, (data) => {
+      console.log(data)
+    })
+    // TODO: go to home page page
     nextStep();
   }
 
@@ -29,18 +51,18 @@ const LimitSet = ({ prevStep, nextStep, handleChange, values }) => {
             <label htmlFor="dLimit" className="inputLabel">
               Daily Limit
             </label>
-            <input defaultValue={values.dLimit} onChange={handleChange('dLimit')} className="input" type="text" id="dLimit" name="dLimit" />
+            <input defaultValue={values.dLimit} onChange={handleChange('dLimit')} className="input" type="number" min="0" id="dLimit" name="dLimit" />
             <label htmlFor="wLimit" className="inputLabel">
               Weekly Limit
             </label>
-            <input defaultValue={values.wLimit} onChange={handleChange('wLimit')} className="input" type="text" id="wLimit" name="wLimit" />
+            <input defaultValue={values.wLimit} onChange={handleChange('wLimit')} className="input" type="number" min="0" id="wLimit" name="wLimit" />
             <label htmlFor="mLimit" className="inputLabel">
               Monthly Limit
             </label>
-            <input defaultValue={values.mLimit} onChange={handleChange('mLimit')} className="input" type="text" id="mLimit" name="mLimit" />
+            <input defaultValue={values.mLimit} onChange={handleChange('mLimit')} className="input" type="number" min="0" id="mLimit" name="mLimit" />
           </div>
           <div className="buttonContainer">
-            <button onClick={Continue} className="button">Next</button>
+            <button onClick={Continue} className="button" id='next-btn'>Next</button>
           </div>
         </div>
       </div>

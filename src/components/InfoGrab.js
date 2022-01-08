@@ -1,3 +1,4 @@
+/*global chrome*/
 import React, { Component } from 'react'
 import LimitSet from './initial/LimitSet'
 import WhoAreYou from './initial/WhoAreYou'
@@ -10,9 +11,9 @@ export default class InfoGrab extends Component {
     step: 1,
     firstName: '',
     email: '',
-    dailyLimit: '',
-    weeklyLimit: '',
-    monthlyLimit: '',
+    dLimit: '',
+    wLimit: '',
+    mLimit: '',
   }
 
   prevStep = () => {
@@ -23,6 +24,7 @@ export default class InfoGrab extends Component {
   nextStep = () => {
     const { step } = this.state;
     this.setState({ step: step + 1 });
+    console.log(this.state)
   }
 
   handleChange = input => event => {
@@ -30,9 +32,24 @@ export default class InfoGrab extends Component {
   }
 
   render() {
+
+    const chrome_data = {}
+    chrome.storage.sync.get(null, (data) => {
+      Object.assign(chrome_data, {
+        user_info: data.user_info,
+        limits: data.limits,
+        transaction_info: data.transaction_info
+      })
+      if (chrome_data.user_info.first_name && chrome_data.limits.daily !== -1) {
+        let new_state = this.state
+        new_state.step = 4
+        this.setState(new_state)
+      }
+    })
+
     const { step } = this.state;
-    const { firstName, email, dailyLimit, weeklyLimit, monthlyLimit } = this.state;
-    const values = { firstName, email, dailyLimit, weeklyLimit, monthlyLimit };
+    const { firstName, email, dLimit, wLimit, mLimit } = this.state;
+    const values = { firstName, email, dLimit, wLimit, mLimit };
 
     switch (step) {
     case 1:
