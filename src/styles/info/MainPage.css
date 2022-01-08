@@ -27,16 +27,11 @@
 .navFooter {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     height: 62.23px;
-    padding-left: 30px;
-    padding-right: 30px;
-
+    width: 360px;
     border-top-style: solid;
     border-top-color: gainsboro;
-
-    /* background-color: lightpink; */
-    
 }
 
 .footerButton {
