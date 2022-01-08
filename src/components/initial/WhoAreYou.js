@@ -18,22 +18,22 @@ const WhoAreYou = ({ prevStep, nextStep, handleChange, values }) => {
     <div className="mainContainer">
       <div className="header">
         <button onClick={Previous} className="headerBackButton">
-                    &lt; Back
+          &lt; Back
         </button>
       </div>
       <div className="formContainer">
         <span className="title">Who are you?</span>
         <div className="inputs">
-          <label htmlFor="fname" className="inputLabel">
-                        First Name
+          <label forHtml="fname" className="inputLabel">
+            First Name
           </label>
-          <input className="input" type="text" id="email" name="email" />
-          <label htmlFor="email" className="inputLabel">
-                        Email
+          <input defaultValue={values.fname} onChange={handleChange('fname')} className="input" type="text" id="fname" name="fname" />
+          <label forHtml="email" className="inputLabel">
+            Email
           </label>
-          <input className="input" type="text" id="fname" name="fname" />
-          <label htmlFor="confirmEmail" className="inputLabel">
-                        Confirm Email
+          <input defaultValue={values.email} onChange={handleChange('email')} className="input" type="text" id="email" name="email" />
+          <label forHtml="confirmEmail" className="inputLabel">
+            Confirm Email
           </label>
           <input className="input" type="text" id="confirmEmail" name="confirmEmail" />
         </div>
