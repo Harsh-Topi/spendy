@@ -7,12 +7,12 @@ import SpendingModal from './SpendingModal';
 const limits = {
   "day": 50,
   "week": 250,
-  "month": 500 
+  "month": 500
 }
 const amountSpent = {
   "day": 2,
   "week": 200,
-  "month": 400 
+  "month": 400
 }
 
 const SpendingPage = () => {
@@ -46,7 +46,7 @@ const SpendingPage = () => {
     let weekLimit = document.getElementById("weekLimit").value;
     let monthLimit = document.getElementById("monthLimit").value;
 
-    // TOOD change this to edit chrome storage when we have 
+    // TOOD change this to edit chrome storage when we have
     limits["day"] = parseInt(dayLimit);
     limits["week"] = parseInt(weekLimit);
     limits["month"] = parseInt(monthLimit);
@@ -71,7 +71,7 @@ const SpendingPage = () => {
             Week
           </button>
         </div>
-        <div className="monthContainer"> 
+        <div className="monthContainer">
           <button onClick={() => chartButtonClick("month")} className="spendButton">
             Month
           </button>
