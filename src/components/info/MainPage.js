@@ -1,9 +1,10 @@
-import React from 'react'
-import '../../styles/info/InfoGlobal.css'
-import '../../styles/info/MainPage.css'
+import React from 'react';
+import '../../styles/info/InfoGlobal.css';
+import '../../styles/info/MainPage.css';
 
-import Header from '../global/Header'
-import Footer from '../global/Footer'
+import Header from '../global/Header';
+import Footer from '../global/Footer';
+import SpendingPage from './SpendingPage';
 
 import Summary from './Summary/Summary'
 
@@ -17,7 +18,7 @@ const MainPage = () => {
       // TO DO - @Nigel use chrome api to populate spent and limit vlaues
       return <Summary spentValues={[1, 2, 3]} limitValues={[10, 20, 30]} />;
     case 2:
-      return <h1>2</h1>;
+      return <SpendingPage />;
     case 3:
       return <h1>3</h1>;
     default:

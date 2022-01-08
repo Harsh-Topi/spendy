@@ -14,7 +14,7 @@ const HomeScreen = ({ nextStep }) => {
         <img className="mainImg" src="homepage-img.svg" />
       </div>
       <div className="logoContainer">
-        <img src="white-logo.svg" />
+        <img style={{width:"200px"}}src="white-logo.svg" />
       </div>
       <span className="subText">
                 Easily track your online spending.

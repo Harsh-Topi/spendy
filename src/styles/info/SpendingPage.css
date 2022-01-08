@@ -1,0 +1,174 @@
+.spendingContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.optionContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 25px;
+}
+
+.dayContainer button {
+  color: #1F65A6;
+}
+
+.weekContainer button {
+  color: #328FF8;
+}
+
+.monthContainer button {
+  color: #76C3FC;
+}
+
+.chartContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 35px;
+  padding-right: 3px;
+  padding-bottom: 10px;
+}
+
+.spendButton {
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.spendText {
+  font-weight: 700;
+  font-size: 26px;
+}
+
+.optionText {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.DayText {
+  fill: #1F65A6;
+}
+
+.WeekText {
+  fill: #328FF8;
+}
+
+.MonthText {
+  fill: #76C3FC;
+}
+
+.detailsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  padding-right: 10px;
+}
+
+.moreDetails {
+  background: none;
+  border-radius: 50px;
+  cursor: pointer;
+  border: none;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.moreDetails:hover {
+  text-decoration: underline;
+}
+
+ /* The Modal (background) */
+ .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modalContent {
+  background-color: #fefefe;
+  margin: 10% auto; /* 15% from the top and centered */
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  border-radius: 10px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+} 
+
+.limitContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.limitEntry {
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 5px;
+}
+
+.limitEntry text {
+  padding-bottom: 5px;
+}
+
+.limitEntry input {
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+  padding: 8px;
+}
+
+.limitSave {
+  display: flex;
+  justify-content:right;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.limitSave button {
+  background-color:#FCB32C;
+	border-radius: 5px;
+	border:1px solid #FCB32C;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+	font-size:15px;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
