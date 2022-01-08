@@ -4,7 +4,7 @@ import '../../styles/info/MainPage.css'
 const Header = () => {
   return (
     <div className="headerContainer">
-      <img className="logoImg" src="logo.svg" />
+      <img className="logoImg" src="spendy-logo-blue.svg" />
     </div>
   )
 }

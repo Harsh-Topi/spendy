@@ -42,10 +42,6 @@
   font-weight: 700;
 }
 
-.spendButton:focus {
-  background: #e4f4fe;
-}
-
 .spendText {
   font-weight: 700;
   font-size: 26px;
@@ -88,7 +84,7 @@
 }
 
 .moreDetails:hover {
-  background: gainsboro;
+  text-decoration: underline;
 }
 
  /* The Modal (background) */
