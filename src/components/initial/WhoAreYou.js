@@ -3,7 +3,7 @@ import React from 'react'
 import '../../styles/initial/DataCollection.css'
 
 const WhoAreYou = ({ prevStep, nextStep, handleChange, values }) => {
-  
+
   const chrome_data = {}
   chrome.storage.sync.get(null, (data) => {
     Object.assign(chrome_data, {
