@@ -1,0 +1,40 @@
+@import './InfoGlobal.css';
+
+.limitsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 120px;
+    width: 360px;
+    border-bottom-style: solid;
+    border-bottom-color: gainsboro;
+}
+
+.bubbleContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.bubble {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 70px;
+    border-radius: 5px;
+}
+
+.bubbleNums{ 
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: white;
+    font-weight: 600;
+}
+
+.bubbleText{ 
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    color: white;
+    font-weight: 600;
+}

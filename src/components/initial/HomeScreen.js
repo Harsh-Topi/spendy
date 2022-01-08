@@ -20,7 +20,7 @@ const HomeScreen = ({ nextStep }) => {
                 Easily track your online spending.
       </span>
       <div className="buttonContainer">
-        <button onClick={Continue} className="button">Get Started</button>
+        <button onClick={Continue} className="button" id='get-started-btn'>Get Started</button>
       </div>
     </div>
   )

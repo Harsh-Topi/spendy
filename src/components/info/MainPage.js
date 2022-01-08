@@ -6,6 +6,8 @@ import Header from '../global/Header';
 import Footer from '../global/Footer';
 import SpendingPage from './SpendingPage';
 
+import Summary from './Summary/Summary'
+
 const MainPage = () => {
 
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -13,13 +15,15 @@ const MainPage = () => {
   const renderSwitch = (pageId) => {
     switch (pageId) {
     case 1:
-      return <h1>1</h1>;
+      // TO DO - @Nigel use chrome api to populate spent and limit vlaues
+      return <Summary spentValues={[1, 2, 3]} limitValues={[10, 20, 30]} />;
     case 2:
       return <SpendingPage />;
     case 3:
       return <h1>3</h1>;
     default:
-      return <h1>1</h1>;
+      // TO DO - @Nigel use chrome api to populate spent and limit vlaues
+      return <Summary spentValues={[1, 2, 3]} limitValues={[10, 20, 30]} />;
     }
   }
 
