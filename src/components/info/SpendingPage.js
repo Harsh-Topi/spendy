@@ -2,16 +2,17 @@ import React from 'react';
 import { useState } from 'react';
 import '../../styles/info/SpendingPage.css';
 import SpendingChart from './SpendingChart';
+import SpendingModal from './SpendingModal';
 
 const limits = {
   "day": 50,
   "week": 250,
-  "month": 5123
+  "month": 500 
 }
 const amountSpent = {
   "day": 2,
   "week": 200,
-  "month": 700
+  "month": 400 
 }
 
 const SpendingPage = () => {
@@ -20,30 +21,75 @@ const SpendingPage = () => {
   const [spent, setSpent] = useState(amountSpent["day"]);
   const [option, setOption] = useState("Day");
 
-  const buttonClick = (type) => {
+  const chartButtonClick = (type) => {
     // setting state to current selected button
     setLimit(limits[type]);
     setSpent(amountSpent[type]);
     setOption(type.charAt(0).toUpperCase() + type.slice(1));
   }
 
+  const showModal = () => {
+    let modal = document.getElementById("spendingModal");
+    modal.style.display = "block";
+  }
+
+  const closeModal = () => {
+    let modal = document.getElementById("spendingModal");
+    modal.style.display = "none";
+  }
+
+  const saveModal = (e) => {
+    e.preventDefault();
+
+    let modal = document.getElementById("spendingModal");
+    let dayLimit = document.getElementById("dayLimit").value;
+    let weekLimit = document.getElementById("weekLimit").value;
+    let monthLimit = document.getElementById("monthLimit").value;
+
+    // TOOD change this to edit chrome storage when we have 
+    limits["day"] = parseInt(dayLimit);
+    limits["week"] = parseInt(weekLimit);
+    limits["month"] = parseInt(monthLimit);
+
+    // set limit to previously shown screen
+    setLimit(limits[option.toLowerCase()]);
+    setSpent(amountSpent[option.toLowerCase()]);
+
+    modal.style.display = "none";
+  }
+
   return (
     <div className="spendingContainer">
       <div className="optionContainer">
         <div className="dayContainer">
-          <button onClick={() => buttonClick("day")} className="spendButton">Day</button>
+          <button onClick={() => chartButtonClick("day")} className="spendButton">
+            Day
+          </button>
         </div>
         <div className="weekContainer">
-          <button onClick={() => buttonClick("week")} className="spendButton">Week</button>
+          <button onClick={() => chartButtonClick("week")} className="spendButton">
+            Week
+          </button>
         </div>
         <div className="monthContainer"> 
-          <button onClick={() => buttonClick("month")} className="spendButton">Month</button>
+          <button onClick={() => chartButtonClick("month")} className="spendButton">
+            Month
+          </button>
         </div>
       </div>
 
       <div className="chartContainer">
         <SpendingChart limit={limit} amountSpent={spent} option={option} />
       </div>
+
+      <div className="detailsContainer">
+        <button className="moreDetails" onClick={showModal}>
+          more details & change limits
+        </button>
+      </div>
+
+      <SpendingModal limits={limits} amountSpent={amountSpent} saveModal={saveModal} closeModal={closeModal} />
+
     </div>
   )
 }
