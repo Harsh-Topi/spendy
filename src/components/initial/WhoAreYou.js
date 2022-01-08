@@ -1,17 +1,38 @@
+/*global chrome*/
 import React from 'react'
 import '../../styles/initial/DataCollection.css'
 
-
 const WhoAreYou = ({ prevStep, nextStep, handleChange, values }) => {
 
-  const Continue = e => {
-    e.preventDefault();
-    nextStep();
-  }
+  const chrome_data = {}
+  chrome.storage.sync.get(null, (data) => {
+    Object.assign(chrome_data, {
+      user_info: data.user_info,
+      limits: data.limits,
+      transaction_info: data.transaction_info
+    })
+  })
 
   const Previous = e => {
     e.preventDefault();
     prevStep();
+  }
+
+  const Continue = e => {
+    e.preventDefault();
+    let firstName = document.getElementById('firstName').value
+    let email = document.getElementById('email').value
+    let confirm_email = document.getElementById('confirmEmail').value
+    if (confirm_email === email && email !== '' && firstName !== '') {
+      chrome_data.user_info = {
+        first_name: firstName,
+        email: email
+      }
+      chrome.storage.sync.set(chrome_data)
+      nextStep();
+    } else {
+      // TODO: notify user
+    }
   }
 
   return (
@@ -27,7 +48,7 @@ const WhoAreYou = ({ prevStep, nextStep, handleChange, values }) => {
           <label forHtml="fname" className="inputLabel">
             First Name
           </label>
-          <input defaultValue={values.fname} onChange={handleChange('fname')} className="input" type="text" id="fname" name="fname" />
+          <input defaultValue={values.firstName} onChange={handleChange('firstName')} className="input" type="text" id="firstName" name="firstName" />
           <label forHtml="email" className="inputLabel">
             Email
           </label>
@@ -38,7 +59,7 @@ const WhoAreYou = ({ prevStep, nextStep, handleChange, values }) => {
           <input className="input" type="text" id="confirmEmail" name="confirmEmail" />
         </div>
         <div className="buttonContainer">
-          <button onClick={Continue} className="button">Next</button>
+          <button onClick={Continue} className="button" id='next-btn'>Next</button>
         </div>
       </div>
     </div>
