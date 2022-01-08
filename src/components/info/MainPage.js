@@ -7,34 +7,34 @@ import Footer from '../global/Footer'
 
 const MainPage = () => {
 
-    const [currentPage, setCurrentPage] = React.useState(1);
+  const [currentPage, setCurrentPage] = React.useState(1);
 
-    const renderSwitch = (pageId) => {
-        switch (pageId) {
-            case 1:
-                return <h1>1</h1>;
-            case 2:
-                return <h1>2</h1>;
-            case 3:
-                return <h1>3</h1>;
-            default:
-                return <h1>1</h1>;
-        }
+  const renderSwitch = (pageId) => {
+    switch (pageId) {
+    case 1:
+      return <h1>1</h1>;
+    case 2:
+      return <h1>2</h1>;
+    case 3:
+      return <h1>3</h1>;
+    default:
+      return <h1>1</h1>;
     }
+  }
 
-    const handlePageChange = (pageId) => {
-        setCurrentPage(pageId);
-    }
+  const handlePageChange = (pageId) => {
+    setCurrentPage(pageId);
+  }
 
-    return (
-        <div className="main">
-            <Header />
-            <div className="dataContainer">
-                {renderSwitch(currentPage)}
-            </div>
-            <Footer setCurrentPage={handlePageChange} />
-        </div>
-    )
+  return (
+    <div className="main">
+      <Header />
+      <div className="dataContainer">
+        {renderSwitch(currentPage)}
+      </div>
+      <Footer setCurrentPage={handlePageChange} />
+    </div>
+  )
 }
 
 export default MainPage
