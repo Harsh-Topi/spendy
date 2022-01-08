@@ -1,0 +1,46 @@
+.mainContainer {  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 600px;
+    width: 360px;
+    background: linear-gradient(135deg, #136acd 0%, #5E3791 100%);
+}
+
+.header {
+    display: flex;
+    top: 0px;
+    left: 0px;
+    width: 360px;
+    height: 60px;
+    position: fixed;
+    /* background-color: pink; */
+}
+
+.headerBackButton {
+    margin-left: 32px;
+    margin-top: 26px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: white;
+    font-size: 20px;
+}
+
+.button {
+	background-color:#FCB32C;
+	border-radius: 5px;
+	border:1px solid #FCB32C;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+	font-size:17px;
+    padding:10px;
+    width: 45%;
+}
+

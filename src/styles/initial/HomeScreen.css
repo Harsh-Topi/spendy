@@ -1,0 +1,34 @@
+@import "Global.css";
+
+.mainImg {
+    width: 100%;
+    height: 100%;
+}
+
+.mainImgContainer {  
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50%;
+}
+
+.logoContainer {
+    display: flex;
+    padding-left: 25px;
+}
+
+.subText { 
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 15px;
+    padding-left: 25px;
+    color: white;
+}
+
+.buttonContainer {
+    padding-left: 25px;
+    padding-top: 30px;
+}

@@ -1,0 +1,42 @@
+@import "Global.css";
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    margin-left: 32px;
+    color: white;
+}
+
+.input { 
+    border-radius: 5px;
+    border: none;
+    height: 25px;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    padding-left: 32px;
+    padding-right: 32px;
+    margin-top: 22px;
+}
+
+.inputLabel {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    margin-top: 24px;
+    margin-bottom: 5px;
+}
+
+.buttonContainer {
+    margin-top: 22px;
+    padding-left: 32px;
+    padding-top: 30px;
+}

@@ -1,9 +1,10 @@
 import './App.css';
+import InfoGrab from './components/InfoGrab'
 
 function App() {
   return (
     <div>
-      hi
+      <InfoGrab />
     </div>
   );
 }

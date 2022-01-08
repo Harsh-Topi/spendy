@@ -1,0 +1,49 @@
+@import './InfoGlobal.css';
+
+.main {
+    display: flex;
+    flex-direction: column;
+}
+
+.headerContainer {
+    display: flex;
+    align-items: center;
+    width: 360px;
+    height: 62.23px;
+    /* background-color: lightblue; */
+
+    border-bottom-style: solid;
+    border-bottom-color: gainsboro;
+}
+
+.dataContainer {
+    display: flex;
+    flex-direction: column;
+    height: 470px;
+    width: 360px;
+    /* background-color: lightcoral; */
+}
+
+.navFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 62.23px;
+    width: 360px;
+    border-top-style: solid;
+    border-top-color: gainsboro;
+}
+
+.footerButton {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
+
+.logoImg {
+    width: 114px;
+    margin-left: 16px;
+}
