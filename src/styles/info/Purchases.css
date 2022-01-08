@@ -1,0 +1,99 @@
+@import './InfoGlobal.css';
+
+.purchasesContainer {
+    display: flex;
+    flex-direction: column;
+    height: 345px;
+    width: 360px;
+    overflow-y: overlay;
+}
+
+*::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: lightslategray;
+    border-radius: 10px;
+  }
+
+.dayHeader {
+    display: flex;
+    width: 360px;
+    height: 27px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #328FF8;
+}
+
+.dateText {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+}
+
+.amountText {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    margin-right: 15px;
+    color: white;
+    font-weight: bold;
+}
+
+.transactionContainer {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 360px;
+    padding-bottom: 15px;
+    align-items: center;
+}
+
+.transactionListing {
+    display: flex;
+    border-radius: 5px;
+    width: 330px;
+    height: 75px;
+    margin-top: 15px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 0px 7px 0 rgba(0, 0, 0, 0.19);
+}
+
+.transactionImg {
+    width: 57px;
+    height: 57px;
+    background-color: lightslategray;
+    border-radius: 5px;
+    margin-left: 23px;
+}
+
+.transactionTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 65px;
+}
+
+.transactionAmount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 23px;
+
+}
