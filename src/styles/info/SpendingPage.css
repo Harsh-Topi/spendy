@@ -41,6 +41,28 @@
   font-weight: 700;
 }
 
-.spendButton:active {
+.spendButton:focus {
   background: #e4f4fe;
+}
+
+.spendText {
+  font-weight: 700;
+  font-size: 30px;
+}
+
+.optionText {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.DayText {
+  fill: #1F65A6;
+}
+
+.WeekText {
+  fill: #328FF8;
+}
+
+.MonthText {
+  fill: #76C3FC;
 }

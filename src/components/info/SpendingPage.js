@@ -6,18 +6,19 @@ import SpendingChart from './SpendingChart';
 const limits = {
   "day": 50,
   "week": 250,
-  "month": 500
+  "month": 5123
 }
 const amountSpent = {
-  "day": 20,
+  "day": 2,
   "week": 200,
-  "month": 500
+  "month": 700
 }
 
 const SpendingPage = () => {
-  const [limit, setLimit] = useState(0);
-  const [spent, setSpent] = useState(0);
-  const [option, setOption] = useState("");
+  // defaulting selection to upon rendering
+  const [limit, setLimit] = useState(limits["day"]);
+  const [spent, setSpent] = useState(amountSpent["day"]);
+  const [option, setOption] = useState("Day");
 
   const buttonClick = (type) => {
     // setting state to current selected button
