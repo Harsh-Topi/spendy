@@ -13,5 +13,11 @@ plugins:
   - react
 rules: {
   "indent": ["error", 2],
-  "react/prop-types": "off"
+  "react/prop-types": "off",
+  "eol-last": ["error", "always"],
+  "no-trailing-spaces": "error"
 }
+
+settings:
+  react:
+    version: 17.0.2
