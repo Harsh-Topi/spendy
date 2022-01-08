@@ -11,7 +11,11 @@ parserOptions:
   sourceType: module
 plugins:
   - react
+<<<<<<< HEAD
 rules: {
   "indent": ["error", 2],
   "react/prop-types": "off"
 }
+=======
+rules: {}
+>>>>>>> 16f7fbd (CI/CD: Added eslint and github workflow for ci)

@@ -1,0 +1,14 @@
+name: ci
+on: push
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run CI
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Lint
+        run: eslint . --ext .js,.jsx,.ts,.tsx
