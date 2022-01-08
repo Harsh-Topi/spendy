@@ -7,7 +7,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Lint
-        run: npm run lint
+        run: |
+          npm install
+          npm run lint
       - name: Run CI
         run: npm ci
       - name: Build
