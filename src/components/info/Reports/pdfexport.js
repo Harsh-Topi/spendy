@@ -55,7 +55,7 @@ export async function exportPDF(type) {
   } else if (type === 'week') {
     exportPDFWeek(doc, transaction_info, date, target, fullMonth, y);
   } else { // type === 'day'
-    exportPDFDay(doc, transaction_info, date, target, fullMonth, y);
+    exportPDFDay(doc, transaction_info[target]["days"], date, fullMonth, y);
   }
   doc.save("SpendyReport.pdf");
 }
@@ -65,7 +65,7 @@ function exportPDFMonth(doc, transaction_info, date, target, fullMonth, y) {
 
   for (const day in transaction_info[target]["days"]) {
     y = writeToPdf(doc,  `${fullMonth} ${day}`, y, true);
-    y = writeItemsFromDay(doc, transaction_info, target, y, day);
+    y = writeItemsFromDay(doc, transaction_info[target]["days"][day], y);
   }
 }
 
@@ -77,7 +77,7 @@ function exportPDFWeek(doc, transaction_info, date, target, fullMonth, y) {
     for (const day in transaction_info[target]["days"]) {
       if (weekAgoDate.getDate() < day && day <= date.getDate()) {
         y = writeToPdf(doc,  `${fullMonth} ${day}`, y, true);
-        y = writeItemsFromDay(doc, transaction_info, target, y, day);
+        y = writeItemsFromDay(doc, transaction_info[target]["days"][day], y);
       }
     }
   } else { // 7 days goes over month/year bounds
@@ -87,7 +87,7 @@ function exportPDFWeek(doc, transaction_info, date, target, fullMonth, y) {
       for (const day in transaction_info[weekAgoTarget]["days"]) {
         if (day > weekAgoDate.getDate()) {
           y = writeToPdf(doc,  `${months[weekAgoDate.getMonth()]} ${day}`, y, true);
-          y = writeItemsFromDay(doc, transaction_info, weekAgoTarget, y, day);
+          y = writeItemsFromDay(doc, transaction_info[target]["days"][day], y);
         }
       }
     }
@@ -95,17 +95,17 @@ function exportPDFWeek(doc, transaction_info, date, target, fullMonth, y) {
     for (const day in transaction_info[target]["days"]) {
       if (day <= date.getDate()) {
         y = writeToPdf(doc, `${fullMonth} ${day}`, y, true);
-        y = writeItemsFromDay(doc, transaction_info, target, y, day);
+        y = writeItemsFromDay(doc, transaction_info[target]["days"][day], y);
       }
     }
   }
 }
 
-function exportPDFDay(doc, transaction_info, date, target, fullMonth, y) {
-  for (const day in transaction_info[target]["days"]) {
+function exportPDFDay(doc, days, date, fullMonth, y) {
+  for (const day in days) {
     if (day === String(date.getDate())) {
       y = writeToPdf(doc, `${fullMonth} ${date.getDate()} ${date.getFullYear()} Spending Report`, y, true);
-      y = writeItemsFromDay(doc, transaction_info, target, y, day);
+      y = writeItemsFromDay(doc, days[day], y);
       return;
     }
   }
@@ -117,9 +117,9 @@ function writeTitleToPdf(doc, title) {
   doc.setFont(undefined, 'normal').setFontSize(NormalText);
 }
 
-function writeItemsFromDay(doc, transaction_info, target, y, day) {
-  for (let item = 0; item < transaction_info[target]["days"][day].length; item++) {
-    y = writeToPdf(doc, `$${transaction_info[target]["days"][day][item]["amount"]} - ${transaction_info[target]["days"][day][item]["item_desc"]}`, y, false);
+function writeItemsFromDay(doc, day, y) {
+  for (let item = 0; item < day.length; item++) {
+    y = writeToPdf(doc, `$${day[item]["amount"]} - ${day[item]["item_desc"]}`, y, false);
   }
   return y + SectionBufferLength;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import * as exportPDF from './Reports/pdfexport.js'
+import { exportPDF } from './Reports/pdfexport';
 
 import '../../styles/info/InfoGlobal.css';
 import '../../styles/info/MainPage.css';
@@ -22,7 +22,7 @@ const MainPage = () => {
     case 2:
       return <SpendingPage />;
     case 3:
-      return <button onClick={() => exportPDF.exportPDF("month")} className="spendButton">month pdf</button>;
+      return <button onClick={() => exportPDF("month")} className="spendButton">month pdf</button>;
     default:
       // TO DO - @Nigel use chrome api to populate spent and limit vlaues
       return <Summary spentValues={[1, 2, 3]} limitValues={[10, 20, 30]} />;
