@@ -9,16 +9,18 @@ import shortNumber from 'short-number'
 
 const Summary = ({ spentValues, limitValues }) => {
 
-  spentValues.map(value => {
+  spentValues = spentValues.map(value => {
     if (value >= 1000) {
       return shortNumber(value);
     }
+    return value
   })
 
-  limitValues.map(value => {
+  limitValues = limitValues.map(value => {
     if (value >= 1000) {
       return shortNumber(value);
     }
+    return value
   })
 
   return (
