@@ -23,7 +23,7 @@ function tryShopifyParse() {
         user_info: data.user_info,
         limits: data.limits,
         transaction_info: data.transaction_info
-      })
+      });
 
       let items = [];
       for (let i = 0; i < products.length; i++) {
@@ -44,14 +44,14 @@ function getShopifyItem(product) {
   }
 
   try {
-    var id = product.getAttribute("data-product-id");
+    var id = `${self.location.href.match(/.+\/[0-9]+\/[a-z]+\/([0-9a-z]+)/i)[1]}/${product.getAttribute("data-product-id")}`;
     var priceStr = product.getElementsByClassName("product__price")[0].textContent;
     var price = Number(priceStr.replace(/[^0-9.-]+/g,""));
     var quantity = product.getElementsByClassName("product-thumbnail__quantity")[0].textContent;
     var name = product.getElementsByClassName("product__description__name")[0].textContent;
     var image = product.getElementsByClassName("product-thumbnail__image")[0].src;
   } catch (error) {
-    return;
+    return null;
   }
 
   return {
