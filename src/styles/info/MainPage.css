@@ -9,11 +9,9 @@
     display: flex;
     align-items: center;
     width: 360px;
-    height: 62.23px;
+    height: 62px;
     /* background-color: lightblue; */
-
-    border-bottom-style: solid;
-    border-bottom-color: gainsboro;
+    border-bottom: 1px solid gainsboro;
 }
 
 .dataContainer {
@@ -27,11 +25,10 @@
 .navFooter {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    height: 62.23px;
+    justify-content: space-around;
+    height: 62px;
     width: 360px;
-    border-top-style: solid;
-    border-top-color: gainsboro;
+    border-top: 1px solid gainsboro;
 }
 
 .footerButton {
@@ -46,4 +43,17 @@
 .logoImg {
     width: 114px;
     margin-left: 16px;
+}
+
+.summaryIcon {
+    fill: #a9a9a9;
+}
+
+.limitIcon {
+    padding-top: 3px;
+    fill: #a9a9a9;
+}
+
+.reportIcon {
+    fill: #a9a9a9;
 }
