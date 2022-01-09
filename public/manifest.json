@@ -17,5 +17,13 @@
   },
   "permissions": [
     "storage"
+  ],
+  "content_scripts": [
+    {
+      "exclude_matches": ["https://*.google.com/*", "https://*.facebook.com/*"],
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
   ]
 }
