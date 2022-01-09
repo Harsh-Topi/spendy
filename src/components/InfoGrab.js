@@ -14,6 +14,23 @@ export default class InfoGrab extends Component {
     dLimit: 500,
     wLimit: 1000,
     mLimit: 5000,
+    isUserRegistered: false
+  }
+
+  componentDidMount = () => {
+    const chrome_data = {}
+    chrome.storage.sync.get(null, (data) => {
+      Object.assign(chrome_data, {
+        user_info: data.user_info,
+        limits: data.limits,
+        transaction_info: data.transaction_info
+      })
+      if (chrome_data.user_info.first_name !== '' && chrome_data.limits.daily !== -1) {
+        let new_state = this.state
+        new_state.isUserRegistered = true
+        this.setState(new_state)
+      }
+    })
   }
 
   prevStep = () => {
@@ -31,55 +48,43 @@ export default class InfoGrab extends Component {
   }
 
   render() {
+    if (!this.state.isUserRegistered) {
+      const { step } = this.state;
+      const { firstName, email, dLimit, wLimit, mLimit } = this.state;
+      const values = { firstName, email, dLimit, wLimit, mLimit };
 
-    const chrome_data = {}
-    chrome.storage.sync.get(null, (data) => {
-      Object.assign(chrome_data, {
-        user_info: data.user_info,
-        limits: data.limits,
-        transaction_info: data.transaction_info
-      })
-      if (chrome_data.user_info.first_name && chrome_data.limits.daily !== -1) {
-        let new_state = this.state
-        new_state.step = 4
-        this.setState(new_state)
+      switch (step) {
+      case 1:
+        return (
+          <HomeScreen
+            nextStep={this.nextStep}
+          />
+        )
+      case 2:
+        return (
+          <WhoAreYou
+            prevStep={this.prevStep}
+            nextStep={this.nextStep}
+            handleChange={this.handleChange}
+            values={values}
+          />
+        )
+      case 3:
+        return (
+          <LimitSet
+            prevStep={this.prevStep}
+            nextStep={this.nextStep}
+            handleChange={this.handleChange}
+            values={values}
+          />
+        )
+      case 4:
+        return (
+          <MainPage />
+        )
+      default:
       }
-    })
-
-    const { step } = this.state;
-    const { firstName, email, dLimit, wLimit, mLimit } = this.state;
-    const values = { firstName, email, dLimit, wLimit, mLimit };
-
-    switch (step) {
-    case 1:
-      return (
-        <HomeScreen
-          nextStep={this.nextStep}
-        />
-      )
-    case 2:
-      return (
-        <WhoAreYou
-          prevStep={this.prevStep}
-          nextStep={this.nextStep}
-          handleChange={this.handleChange}
-          values={values}
-        />
-      )
-    case 3:
-      return (
-        <LimitSet
-          prevStep={this.prevStep}
-          nextStep={this.nextStep}
-          handleChange={this.handleChange}
-          values={values}
-        />
-      )
-    case 4:
-      return (
-        <MainPage />
-      )
-    default:
     }
+    return (<MainPage />)
   }
 }
