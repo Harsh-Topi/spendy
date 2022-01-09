@@ -4,7 +4,7 @@ import '../../../styles/info/Reports.css';
 
 import Select from 'react-select';
 
-import { exportPDF } from './pdfexport';
+import { exportPDF } from './pdfExport';
 
 const SingleReport = ({color, type}) => {
 
