@@ -15,7 +15,9 @@ rules: {
   "indent": ["error", 2],
   "react/prop-types": "off",
   "eol-last": ["error", "always"],
-  "no-trailing-spaces": "error"
+  "no-trailing-spaces": "error",
+  "space-infix-ops": ["error", { "int32Hint": false }],
+  "semi": [2, "always"]
 }
 
 settings:

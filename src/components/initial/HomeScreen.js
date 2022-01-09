@@ -1,12 +1,12 @@
-import React from 'react'
-import '../../styles/initial/HomeScreen.css'
+import React from 'react';
+import '../../styles/initial/HomeScreen.css';
 
 const HomeScreen = ({ nextStep }) => {
 
   const Continue = e => {
     e.preventDefault();
     nextStep();
-  }
+  };
 
   return (
     <div className="mainContainer">
@@ -23,7 +23,7 @@ const HomeScreen = ({ nextStep }) => {
         <button onClick={Continue} className="button" id='get-started-btn'>Get Started</button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HomeScreen
+export default HomeScreen;
