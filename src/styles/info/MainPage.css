@@ -45,6 +45,14 @@
     margin-left: 16px;
 }
 
+.svgIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    width: 60px;
+}
+
 .summaryIcon {
     fill: #a9a9a9;
 }
