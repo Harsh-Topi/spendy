@@ -18,6 +18,14 @@ const PurchaseListing = () => {
     });
   }, []);
 
+  if (Object.keys(transaction_info).length == 0) {
+    return (
+      <div className="no-items-banner">
+        No items found
+      </div>
+    );
+  }
+
   let purchaseHistory = [];
   for (const month in transaction_info) {
     let data = transaction_info[month];
