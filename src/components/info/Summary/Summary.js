@@ -1,11 +1,11 @@
-import React from 'react'
-import '../../../styles/info/Summary.css'
-import '../../../styles/info/Purchases.css'
+import React from 'react';
+import '../../../styles/info/Summary.css';
+import '../../../styles/info/Purchases.css';
 
-import LimitBubble from './LimitBubble'
-import PurchaseListing from '../Purchases/PurchaseListing'
+import LimitBubble from './LimitBubble';
+import PurchaseListing from '../Purchases/PurchaseListing';
 
-import shortNumber from 'short-number'
+import shortNumber from 'short-number';
 
 const Summary = ({ spentValues, limitValues }) => {
 
@@ -13,15 +13,15 @@ const Summary = ({ spentValues, limitValues }) => {
     if (value >= 1000) {
       return shortNumber(value);
     }
-    return value
-  })
+    return value;
+  });
 
   limitValues = limitValues.map(value => {
     if (value >= 1000) {
       return shortNumber(value);
     }
-    return value
-  })
+    return value;
+  });
 
   return (
     <div className="bubbleContainer">
@@ -35,7 +35,7 @@ const Summary = ({ spentValues, limitValues }) => {
         <PurchaseListing />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Summary
+export default Summary;

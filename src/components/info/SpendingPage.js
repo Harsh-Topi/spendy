@@ -5,7 +5,7 @@ import '../../styles/info/SpendingPage.css';
 import SpendingChart from './SpendingChart';
 import SpendingModal from './SpendingModal';
 
-const chrome_data = {}
+const chrome_data = {};
 chrome.storage.sync.get(null, (data) => {
   Object.assign(chrome_data, {
     user_info: data.user_info,
@@ -18,12 +18,12 @@ const limits = {
   "day": 50,
   "week": 250,
   "month": 500
-}
+};
 const amountSpent = {
   "day": 2,
   "week": 200,
   "month": 400
-}
+};
 
 const SpendingPage = () => {
   // defaulting selection to upon rendering
@@ -36,17 +36,17 @@ const SpendingPage = () => {
     setLimit(limits[type]);
     setSpent(amountSpent[type]);
     setOption(type.charAt(0).toUpperCase() + type.slice(1));
-  }
+  };
 
   const showModal = () => {
     let modal = document.getElementById("spendingModal");
     modal.style.display = "block";
-  }
+  };
 
   const closeModal = () => {
     let modal = document.getElementById("spendingModal");
     modal.style.display = "none";
-  }
+  };
 
   const saveModal = (e) => {
     e.preventDefault();
@@ -64,15 +64,15 @@ const SpendingPage = () => {
       daily: limits["day"],
       weekly: limits["week"],
       monthly: limits["month"]
-    }
-    chrome.storage.sync.set(chrome_data)
+    };
+    chrome.storage.sync.set(chrome_data);
 
     // set limit to previously shown screen
     setLimit(limits[option.toLowerCase()]);
     setSpent(amountSpent[option.toLowerCase()]);
 
     modal.style.display = "none";
-  }
+  };
 
   return (
     <div className="spendingContainer">
@@ -107,7 +107,7 @@ const SpendingPage = () => {
       <SpendingModal limits={limits} amountSpent={amountSpent} saveModal={saveModal} closeModal={closeModal} />
 
     </div>
-  )
-}
+  );
+};
 
 export default SpendingPage;

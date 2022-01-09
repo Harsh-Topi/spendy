@@ -1,40 +1,40 @@
 /*global chrome*/
-import React from 'react'
-import '../../styles/initial/DataCollection.css'
+import React from 'react';
+import '../../styles/initial/DataCollection.css';
 
 const LimitSet = ({ prevStep, nextStep, handleChange, values }) => {
 
-  const chrome_data = {}
+  const chrome_data = {};
   chrome.storage.sync.get(null, (data) => {
     Object.assign(chrome_data, {
       user_info: data.user_info,
       limits: data.limits,
       transaction_info: data.transaction_info
-    })
-  })
+    });
+  });
 
   const Previous = e => {
     e.preventDefault();
     prevStep();
-  }
+  };
 
   const Continue = e => {
     e.preventDefault();
-    let d_limit = parseInt(document.getElementById('dLimit').value)
-    let w_limit = parseInt(document.getElementById('wLimit').value)
-    let m_limit = parseInt(document.getElementById('mLimit').value)
+    let d_limit = parseInt(document.getElementById('dLimit').value);
+    let w_limit = parseInt(document.getElementById('wLimit').value);
+    let m_limit = parseInt(document.getElementById('mLimit').value);
     if (d_limit !== '' && w_limit !== '' && m_limit !== '') {
       chrome_data.limits = {
         daily: d_limit,
         weekly: w_limit,
         monthly: m_limit
-      }
-      chrome.storage.sync.set(chrome_data)
+      };
+      chrome.storage.sync.set(chrome_data);
       nextStep();
     } else {
       // TODO: notify user
     }
-  }
+  };
 
   return (
     <div>
@@ -66,7 +66,7 @@ const LimitSet = ({ prevStep, nextStep, handleChange, values }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LimitSet
+export default LimitSet;

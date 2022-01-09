@@ -1,5 +1,5 @@
-import React from 'react'
-import '../../../styles/info/Summary.css'
+import React from 'react';
+import '../../../styles/info/Summary.css';
 
 
 const LimitBubble = ({ color, spent, limit, interval }) => {
@@ -8,7 +8,7 @@ const LimitBubble = ({ color, spent, limit, interval }) => {
       <span className="bubbleNums">{`$${spent} / $${limit}`}</span>
       <span className="bubbleText">{interval}</span>
     </div>
-  )
-}
+  );
+};
 
-export default LimitBubble
+export default LimitBubble;
