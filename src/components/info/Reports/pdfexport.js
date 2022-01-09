@@ -41,10 +41,6 @@ export async function exportPDF(type, day, month, year) {
   const target = `${String((date.getMonth() + 1))}/${date.getFullYear()}`;
   const fullMonth = months[date.getMonth()];
 
-  console.log(date);
-  console.log(target);
-  console.log(transaction_info[target]);
-
   const doc = new jsPDF();
   writeTitleToPdf(doc, "$pendy Spending Report");
   let y = DefaultYPos;
