@@ -14,9 +14,7 @@ chrome.storage.sync.get(null, (data) => {
   });
 });
 
-const amountSpent = [2, 200, 400];
-
-const SpendingPage = ({limits, setLimits}) => {
+const SpendingPage = ({limits, setLimits, amountSpent}) => {
   // defaulting selection to upon rendering
   const [index, setIndex] = useState(0)
   const [option, setOption] = useState("Day");
