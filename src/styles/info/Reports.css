@@ -1,0 +1,67 @@
+@import './InfoGlobal.css';
+
+.singleReport {
+    display: flex;
+    flex-direction: column;
+    height: 125px;
+    width: 330px;
+    border-radius: 5px;
+}
+
+.reportsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 465px;
+    width: 360px;
+}
+
+.reportHeader {
+    width: 330px;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reportHeaderTitle {
+    font-family: 'Roboto', sans-serif;
+    font-size: 36px;
+    margin-top: 5px;
+    margin-left: 7px;
+    color: white;
+}
+
+.reportStats {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 5px;
+    margin-left: 7px;
+    color: white;
+}
+
+.downloadButton {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+.reportSummary {
+    width: 330px;
+    height: 65px;
+    display: flex;
+    align-items: center;    
+}
+
+.reportFooter {
+    width: 330px;
+    height: 30px;
+    display: flex;
+    justify-content: flex-end;
+}

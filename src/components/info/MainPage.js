@@ -1,6 +1,5 @@
 /*global chrome*/
 import React from 'react';
-import { exportPDF } from './Reports/pdfExport';
 
 import '../../styles/info/InfoGlobal.css';
 import '../../styles/info/MainPage.css';
@@ -10,6 +9,8 @@ import Footer from '../global/Footer';
 import SpendingPage from './SpendingPage';
 
 import Summary from './Summary/Summary';
+
+import Reports from './Reports/Reports';
 import shortNumber from 'short-number';
 
 const MainPage = () => {
@@ -107,7 +108,7 @@ const MainPage = () => {
     case 2:
       return <SpendingPage limits={limits} setLimits={setLimits} amountSpent={getListTotal()}/>;
     case 3:
-      return <button onClick={() => exportPDF("month", 8, 1, 2022)} className="spendButton">month pdf</button>;
+      return <Reports />;
     default:
       return <Summary spentValues={[getDayTotal(), getWeekTotal(), getMonthTotal()]} limitValues={limits} />;
     }
