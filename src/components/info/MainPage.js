@@ -62,7 +62,7 @@ const MainPage = () => {
     }
   }
 
-  const getWeekTotal = () => {
+  const getWeekTotal = (shortened=false) => {
     let day = new Date();
     let total = 0;
     for (var i = 0; i < 7; i++) {
@@ -72,10 +72,14 @@ const MainPage = () => {
       total += getDayTotal(dd, mm, yyyy, true);
       day.setDate(day.getDate() - 1);
     }
-    return shortNumber(parseInt(total.toFixed()))
+    if (shortened) {
+      return shortNumber(parseInt(total.toFixed()));
+    } else {
+      return parseInt(total.toFixed());
+    }
   }
 
-  const getMonthTotal = () => {
+  const getMonthTotal = (shortened) => {
     let today = new Date();
     let mm = String(today.getMonth() + 1);
     let yyyy = today.getFullYear();
@@ -83,15 +87,23 @@ const MainPage = () => {
     if (transaction_info[key] == undefined) {
       return 0;
     }
-    return shortNumber(parseInt(transaction_info[key].amount_spent.toFixed()));
+    if (shortened) {
+      return shortNumber(parseInt(transaction_info[key].amount_spent.toFixed()));
+    } else {
+      return parseInt(transaction_info[key].amount_spent.toFixed());
+    }
+  }
+
+  const getListTotal = () => {
+    return [getDayTotal(false), getWeekTotal(false), getMonthTotal(false)];
   }
 
   const renderSwitch = (pageId) => {
     switch (pageId) {
     case 1:
-      return <Summary spentValues={[getDayTotal(), getWeekTotal(), getMonthTotal()]} limitValues={limits} />;
+      return <Summary spentValues={[getDayTotal(), getWeekTotal(true), getMonthTotal(true)]} limitValues={limits} />;
     case 2:
-      return <SpendingPage />;
+      return <SpendingPage limits={limits} setLimits={setLimits} amountSpent={getListTotal()}/>;
     case 3:
       return <button onClick={() => exportPDF("month", 8, 1, 2022)} className="spendButton">month pdf</button>;
     default:

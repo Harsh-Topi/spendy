@@ -18,6 +18,8 @@ const SpendingChart = ({limit, amountSpent, option}) => {
         startAngle={90}
         endAngle={-270}
         paddingAngle={0}
+        blendStroke={true}
+        animationBegin={0}
         dataKey="value"
       >
         <Cell fill={(percent <= 100 ? colors[0] : colors[0]).toString()} />

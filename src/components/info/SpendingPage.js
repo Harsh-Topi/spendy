@@ -14,27 +14,14 @@ chrome.storage.sync.get(null, (data) => {
   });
 });
 
-const limits = {
-  "day": 50,
-  "week": 250,
-  "month": 500
-}
-const amountSpent = {
-  "day": 2,
-  "week": 200,
-  "month": 400
-}
-
-const SpendingPage = () => {
+const SpendingPage = ({limits, setLimits, amountSpent}) => {
   // defaulting selection to upon rendering
-  const [limit, setLimit] = useState(limits["day"]);
-  const [spent, setSpent] = useState(amountSpent["day"]);
+  const [index, setIndex] = useState(0)
   const [option, setOption] = useState("Day");
 
-  const chartButtonClick = (type) => {
+  const chartButtonClick = (type, i) => {
     // setting state to current selected button
-    setLimit(limits[type]);
-    setSpent(amountSpent[type]);
+    setIndex(i);
     setOption(type.charAt(0).toUpperCase() + type.slice(1));
   }
 
@@ -52,24 +39,19 @@ const SpendingPage = () => {
     e.preventDefault();
 
     let modal = document.getElementById("spendingModal");
-    let dayLimit = document.getElementById("dayLimit").value;
-    let weekLimit = document.getElementById("weekLimit").value;
-    let monthLimit = document.getElementById("monthLimit").value;
-
-    limits["day"] = parseInt(dayLimit);
-    limits["week"] = parseInt(weekLimit);
-    limits["month"] = parseInt(monthLimit);
+    let dayLimit = parseInt(document.getElementById("dayLimit").value);
+    let weekLimit = parseInt(document.getElementById("weekLimit").value);
+    let monthLimit = parseInt(document.getElementById("monthLimit").value);
 
     chrome_data.limits = {
-      daily: limits["day"],
-      weekly: limits["week"],
-      monthly: limits["month"]
+      daily: dayLimit,
+      weekly: weekLimit,
+      monthly: monthLimit
     }
     chrome.storage.sync.set(chrome_data)
 
-    // set limit to previously shown screen
-    setLimit(limits[option.toLowerCase()]);
-    setSpent(amountSpent[option.toLowerCase()]);
+    // set limits in the parent component
+    setLimits([dayLimit, weekLimit, monthLimit]);
 
     modal.style.display = "none";
   }
@@ -78,29 +60,29 @@ const SpendingPage = () => {
     <div className="spendingContainer">
       <div className="optionContainer">
         <div className="dayContainer">
-          <button onClick={() => chartButtonClick("day")} className="spendButton">
+          <button onClick={() => chartButtonClick("day", 0)} className="spendButton">
             Day
           </button>
         </div>
         <div className="weekContainer">
-          <button onClick={() => chartButtonClick("week")} className="spendButton">
+          <button onClick={() => chartButtonClick("week", 1)} className="spendButton">
             Week
           </button>
         </div>
         <div className="monthContainer">
-          <button onClick={() => chartButtonClick("month")} className="spendButton">
+          <button onClick={() => chartButtonClick("month", 2)} className="spendButton">
             Month
           </button>
         </div>
       </div>
 
       <div className="chartContainer">
-        <SpendingChart limit={limit} amountSpent={spent} option={option} />
+        <SpendingChart limit={limits[index]} amountSpent={amountSpent[index]} option={option} />
       </div>
 
       <div className="detailsContainer">
         <button className="moreDetails" onClick={showModal}>
-          more details & change limits
+          Change Limits
         </button>
       </div>
 
