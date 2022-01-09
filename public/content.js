@@ -9,7 +9,7 @@ function detectApps() {
 
 function detectShopify() {
   headerTitle = document.getElementsByClassName("os-header__title")[0];
-  if (headerTitle && headerTitle.textContent.toLowerCase().includes("thank you")) {
+  if (headerTitle && headerTitle.textContent.toLowerCase().includes("thank")) {
     tryShopifyParse();
   }
 }
