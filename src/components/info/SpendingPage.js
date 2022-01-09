@@ -1,8 +1,18 @@
+/*global chrome*/
 import React from 'react';
 import { useState } from 'react';
 import '../../styles/info/SpendingPage.css';
 import SpendingChart from './SpendingChart';
 import SpendingModal from './SpendingModal';
+
+const chrome_data = {}
+chrome.storage.sync.get(null, (data) => {
+  Object.assign(chrome_data, {
+    user_info: data.user_info,
+    limits: data.limits,
+    transaction_info: data.transaction_info
+  });
+});
 
 const limits = {
   "day": 50,
@@ -46,10 +56,16 @@ const SpendingPage = () => {
     let weekLimit = document.getElementById("weekLimit").value;
     let monthLimit = document.getElementById("monthLimit").value;
 
-    // TOOD change this to edit chrome storage when we have
     limits["day"] = parseInt(dayLimit);
     limits["week"] = parseInt(weekLimit);
     limits["month"] = parseInt(monthLimit);
+
+    chrome_data.limits = {
+      daily: limits["day"],
+      weekly: limits["week"],
+      monthly: limits["month"]
+    }
+    chrome.storage.sync.set(chrome_data)
 
     // set limit to previously shown screen
     setLimit(limits[option.toLowerCase()]);

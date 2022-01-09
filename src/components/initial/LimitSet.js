@@ -20,9 +20,9 @@ const LimitSet = ({ prevStep, nextStep, handleChange, values }) => {
 
   const Continue = e => {
     e.preventDefault();
-    let d_limit = document.getElementById('dLimit').value
-    let w_limit = document.getElementById('wLimit').value
-    let m_limit = document.getElementById('mLimit').value
+    let d_limit = parseInt(document.getElementById('dLimit').value)
+    let w_limit = parseInt(document.getElementById('wLimit').value)
+    let m_limit = parseInt(document.getElementById('mLimit').value)
     if (d_limit !== '' && w_limit !== '' && m_limit !== '') {
       chrome_data.limits = {
         daily: d_limit,

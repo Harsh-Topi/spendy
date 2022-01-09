@@ -27,15 +27,15 @@ const SpendingModal = ({limits, amountSpent, closeModal, saveModal}) => {
           <form onSubmit={saveModal}>
             <div className="limitEntry">
               <text>Day:</text>
-              <input id="dayLimit" defaultValue={limits["day"]} required="true" type="number"/>
+              <input id="dayLimit" defaultValue={limits["day"]} required="true" type="number" min="0"/>
             </div>
             <div className="limitEntry">
               <text>Week:</text>
-              <input id="weekLimit" defaultValue={limits["week"]} required="true" type="number"/>
+              <input id="weekLimit" defaultValue={limits["week"]} required="true" type="number" min="0"/>
             </div>
             <div className="limitEntry">
               <text>Month:</text>
-              <input id="monthLimit" defaultValue={limits["month"]} required="true" type="number"/>
+              <input id="monthLimit" defaultValue={limits["month"]} required="true" type="number" min="0"/>
             </div>
             <div className="limitSave">
               <button>
