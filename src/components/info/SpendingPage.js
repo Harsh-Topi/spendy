@@ -5,7 +5,7 @@ import '../../styles/info/SpendingPage.css';
 import SpendingChart from './SpendingChart';
 import SpendingModal from './SpendingModal';
 
-const chrome_data = {}
+const chrome_data = {};
 chrome.storage.sync.get(null, (data) => {
   Object.assign(chrome_data, {
     user_info: data.user_info,
@@ -14,26 +14,27 @@ chrome.storage.sync.get(null, (data) => {
   });
 });
 
+
 const SpendingPage = ({limits, setLimits, amountSpent}) => {
   // defaulting selection to upon rendering
-  const [index, setIndex] = useState(0)
+  const [index, setIndex] = useState(0);
   const [option, setOption] = useState("Day");
 
   const chartButtonClick = (type, i) => {
     // setting state to current selected button
     setIndex(i);
     setOption(type.charAt(0).toUpperCase() + type.slice(1));
-  }
+  };
 
   const showModal = () => {
     let modal = document.getElementById("spendingModal");
     modal.style.display = "block";
-  }
+  };
 
   const closeModal = () => {
     let modal = document.getElementById("spendingModal");
     modal.style.display = "none";
-  }
+  };
 
   const saveModal = (e) => {
     e.preventDefault();
@@ -47,14 +48,14 @@ const SpendingPage = ({limits, setLimits, amountSpent}) => {
       daily: dayLimit,
       weekly: weekLimit,
       monthly: monthLimit
-    }
-    chrome.storage.sync.set(chrome_data)
+    };
+    chrome.storage.sync.set(chrome_data);
 
     // set limits in the parent component
     setLimits([dayLimit, weekLimit, monthLimit]);
 
     modal.style.display = "none";
-  }
+  };
 
   return (
     <div className="spendingContainer">
@@ -89,7 +90,7 @@ const SpendingPage = ({limits, setLimits, amountSpent}) => {
       <SpendingModal limits={limits} amountSpent={amountSpent} saveModal={saveModal} closeModal={closeModal} />
 
     </div>
-  )
-}
+  );
+};
 
 export default SpendingPage;

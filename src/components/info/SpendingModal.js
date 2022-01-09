@@ -46,7 +46,7 @@ const SpendingModal = ({limits, amountSpent, closeModal, saveModal}) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default SpendingModal;

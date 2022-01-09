@@ -114,7 +114,7 @@ function exportPDFDay(doc, days, fullMonth, y, date) {
 
 function writeTitleToPdf(doc, title) {
   doc.setFont(undefined, 'bold').setFontSize(LargeText);
-  doc.text(title, doc.internal.pageSize.width/2, 20, null, null, 'center');
+  doc.text(title, doc.internal.pageSize.width / 2, 20, null, null, 'center');
   doc.setFont(undefined, 'normal').setFontSize(NormalText);
 }
 
