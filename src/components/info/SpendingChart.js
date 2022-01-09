@@ -1,8 +1,8 @@
 import React from 'react';
-import shortNumber from 'short-number'
+import shortNumber from 'short-number';
 import { PieChart, Pie, Cell } from "recharts";
 
-const colors = ["#1F65A6", "#76C3FC", "#E81E1E"]
+const colors = ["#1F65A6", "#76C3FC", "#E81E1E"];
 
 const SpendingChart = ({limit, amountSpent, option}) => {
   const percent = (amountSpent / limit) * 100;
@@ -18,6 +18,8 @@ const SpendingChart = ({limit, amountSpent, option}) => {
         startAngle={90}
         endAngle={-270}
         paddingAngle={0}
+        blendStroke={true}
+        animationBegin={0}
         dataKey="value"
       >
         <Cell fill={(percent <= 100 ? colors[0] : colors[0]).toString()} />
@@ -31,6 +33,6 @@ const SpendingChart = ({limit, amountSpent, option}) => {
       </text>
     </PieChart>
   );
-}
+};
 
 export default SpendingChart;

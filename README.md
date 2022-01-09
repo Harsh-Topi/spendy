@@ -10,9 +10,17 @@ A browser extension for keeping on top of your finances. This project will keep 
 
 To download the latest release click [here](https://github.com/Harsh-Topi/spendy/releases/latest).
 
-Alternatively, instructions for development:
+To install from the latest release, unzip the contents from spendy_build.zip into a folder. Then, from chrome://extensions/, enable developer mode and click the 'Load unpacked' button on the top left of the screen. From there, select the folder with the contents from the spendy_build.zip file. $pendy will now be installed on your browser and can be accessed through clicking it's extension icon on the top right extension menu.
+
+Alternatively, instructions for development / building $pendy locally:
 ```
 git clone https://github.com/Harsh-Topi/spendy.git
 cd spendy
 npm install
+npm run build
+```
+
+Note: if you are on Windows you may need to use this command to build the extension instead:
+```
+npm run build-windows
 ```

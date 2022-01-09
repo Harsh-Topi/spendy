@@ -1,64 +1,42 @@
-import React from 'react'
-import '../../../styles/info/Summary.css'
+/*global chrome*/
+import React from 'react';
+import '../../../styles/info/Summary.css';
 
 const PurchaseListing = () => {
 
-  // test object
-  let testObject = {
-    "01/2022": {
-      amount_spent: 33.33,
-      days: {
-        1: [
-          {
-            id: 1,
-            amount: 33.99,
-            timestamp: 24,
-            item_desc: "Big Blue pants with pockets and stuff adjakldjakldjakldjalkadada",
-            image_url: "https://picsum.photos/seed/picsum/200/300",
-            website: "adadadaa"
-          },
-          {
-            id: 2,
-            amount: 33.99,
-            timestamp: 24,
-            item_desc: "Big Blue pants with pockets and stuff adjakldjakldjakldjalkadada",
-            image_url: "https://picsum.photos/seed/picsum/200/300",
-            website: "adadadaa"
-          },
-          {
-            id: 2,
-            amount: 33.99,
-            timestamp: 24,
-            item_desc: "Big Blue pants with pockets and stuff adjakldjakldjakldjalkadada",
-            image_url: "https://picsum.photos/seed/picsum/200/300",
-            website: "adadadaa"
-          }
-        ],
-        2: [
-          {
-            id: 4,
-            amount: 33.99,
-            timestamp: 24,
-            item_desc: "Big Blue pants with pockets and stuff adjakldjakldjakldjalkadada",
-            image_url: "https://picsum.photos/seed/picsum/200/300",
-            website: "adadadaa"
-          },
-        ]
-      }
-    }
+  const [transaction_info, setTransactionInfo] = React.useState([]);
+
+  React.useEffect(() => {
+    const chrome_data = {};
+    chrome.storage.sync.get(null, (data) => {
+      Object.assign(chrome_data, {
+        user_info: data.user_info,
+        limits: data.limits,
+        transaction_info: data.transaction_info
+      });
+      setTransactionInfo(chrome_data.transaction_info);
+    });
+  }, []);
+
+  if (Object.keys(transaction_info).length == 0) {
+    return (
+      <div className="no-items-banner">
+        No items found
+      </div>
+    );
   }
 
   let purchaseHistory = [];
-  for (const month in testObject) {
-    let test = testObject[month]
-    let days = test['days'];
+  for (const month in transaction_info) {
+    let data = transaction_info[month];
+    let days = data['days'];
     for (const day in days) {
       let dayTotal = 0;
-      let theDay = days[day]
+      let theDay = days[day];
       let purchases = [];
       for (const purchase in theDay) {
-        let thePurchase = theDay[purchase]
-        dayTotal += thePurchase['amount']
+        let thePurchase = theDay[purchase];
+        dayTotal += thePurchase['amount'];
         purchases.push(
           <div className="transactionListing">
             <div className="transactionImg">
@@ -71,25 +49,25 @@ const PurchaseListing = () => {
                 ${thePurchase['amount']}
             </div>
           </div>
-        )
+        );
       }
 
       let header =
                 <div className="dayHeader">
                   <span className="dateText">{day.concat("/" + month)}</span>
                   <span className="amountText">${Math.round(dayTotal * 100) / 100}</span>
-                </div>
+                </div>;
 
-      purchaseHistory.push(header)
+      purchaseHistory.push(header);
 
       let transactionList =
                 <div className="transactionContainer">
                   {purchases.map(item => {
-                    return item
+                    return item;
                   })}
-                </div>
+                </div>;
 
-      purchaseHistory.push(transactionList)
+      purchaseHistory.push(transactionList);
     }
   }
 
@@ -101,7 +79,7 @@ const PurchaseListing = () => {
         })
       }
     </div>
-  )
-}
+  );
+};
 
-export default PurchaseListing
+export default PurchaseListing;

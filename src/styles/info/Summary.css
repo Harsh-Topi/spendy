@@ -4,10 +4,11 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    height: 120px;
+    height: 90px;
     width: 360px;
     border-bottom-style: solid;
     border-bottom-color: gainsboro;
+    border-width: 1px;
 }
 
 .bubbleContainer {
@@ -20,7 +21,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100px;
+    width: 105px;
     height: 70px;
     border-radius: 5px;
 }
