@@ -58,7 +58,7 @@ const WhoAreYou = ({ prevStep, nextStep, handleChange, values }) => {
           </label>
           <input className="input" type="text" id="confirmEmail" name="confirmEmail" />
         </div>
-        <div className="buttonContainer">
+        <div className="nextContainer">
           <button onClick={Continue} className="button" id='next-btn'>Next</button>
         </div>
       </div>

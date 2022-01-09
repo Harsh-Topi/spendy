@@ -60,7 +60,7 @@ const LimitSet = ({ prevStep, nextStep, handleChange, values }) => {
             </label>
             <input defaultValue={values.mLimit} onChange={handleChange('mLimit')} className="input" type="number" min="0" id="mLimit" name="mLimit" />
           </div>
-          <div className="buttonContainer">
+          <div className="nextContainer">
             <button onClick={Continue} className="button" id='next-btn'>Next</button>
           </div>
         </div>
