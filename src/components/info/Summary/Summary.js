@@ -5,7 +5,7 @@ import '../../../styles/info/Purchases.css'
 import LimitBubble from './LimitBubble'
 import PurchaseListing from '../Purchases/PurchaseListing'
 
-import { shortNumber } from 'short-number'
+import shortNumber from 'short-number'
 
 const Summary = ({ spentValues, limitValues }) => {
 

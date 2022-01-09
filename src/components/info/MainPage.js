@@ -1,3 +1,4 @@
+/*global chrome*/
 import React from 'react';
 import '../../styles/info/InfoGlobal.css';
 import '../../styles/info/MainPage.css';
@@ -9,21 +10,49 @@ import SpendingPage from './SpendingPage';
 import Summary from './Summary/Summary'
 
 const MainPage = () => {
-
   const [currentPage, setCurrentPage] = React.useState(1);
+  const [limits, setLimits] = React.useState([])
+  // const [transaction_info, setTransactionInfo] = React.useState({})
+
+  React.useEffect(() => {
+    const chrome_data = {}
+    chrome.storage.sync.get(null, (data) => {
+      Object.assign(chrome_data, {
+        user_info: data.user_info,
+        limits: data.limits,
+        transaction_info: data.transaction_info
+      });
+      setLimits([
+        chrome_data.limits.daily,
+        chrome_data.limits.weekly,
+        chrome_data.limits.monthly
+      ])
+      // setTransactionInfo(chrome_data.transaction_info)
+    });
+  }, []);
+
+  const getDayTotal = () => {
+    return 0
+  }
+
+  const getWeekTotal = () => {
+    return 0
+  }
+
+  const getMonthTotal = () => {
+    return 0
+  }
 
   const renderSwitch = (pageId) => {
     switch (pageId) {
     case 1:
-      // TO DO - @Nigel use chrome api to populate spent and limit vlaues
-      return <Summary spentValues={[1, 2, 3]} limitValues={[10, 20, 30]} />;
+      return <Summary spentValues={[getDayTotal(), getWeekTotal(), getMonthTotal()]} limitValues={limits} />;
     case 2:
       return <SpendingPage />;
     case 3:
       return <h1>3</h1>;
     default:
-      // TO DO - @Nigel use chrome api to populate spent and limit vlaues
-      return <Summary spentValues={[1, 2, 3]} limitValues={[10, 20, 30]} />;
+      return <Summary spentValues={[getDayTotal(), getWeekTotal(), getMonthTotal()]} limitValues={limits} />;
     }
   }
 
