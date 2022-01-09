@@ -11,16 +11,16 @@ const Summary = ({ spentValues, limitValues }) => {
 
   spentValues = spentValues.map(value => {
     if (value >= 1000) {
-      return shortNumber(value);
+      return shortNumber(parseInt(value));
     }
-    return value
+    return value;
   })
 
   limitValues = limitValues.map(value => {
     if (value >= 1000) {
-      return shortNumber(value);
+      return shortNumber(parseInt(value));
     }
-    return value
+    return value;
   })
 
   return (

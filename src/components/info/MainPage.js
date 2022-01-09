@@ -9,7 +9,9 @@ import Header from '../global/Header';
 import Footer from '../global/Footer';
 import SpendingPage from './SpendingPage';
 
-import Summary from './Summary/Summary'
+import Summary from './Summary/Summary';
+
+import Reports from './Reports/Reports'
 
 const MainPage = () => {
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -18,42 +20,26 @@ const MainPage = () => {
   React.useEffect(() => {
     const chrome_data = {}
     chrome.storage.sync.get(null, (data) => {
-      Object.assign(chrome_data, {
-        user_info: data.user_info,
-        limits: data.limits,
-        transaction_info: data.transaction_info
-      });
-      setLimits([
-        chrome_data.limits.daily,
-        chrome_data.limits.weekly,
-        chrome_data.limits.monthly
-      ])
-    });
+        Object.assign(chrome_data, {
+          user_info: data.user_info,
+          limits: data.limits,
+          transaction_info: data.transaction_info
+        })
+        setLimits([chrome_data.limits.daily, chrome_data.limits.weekly, chrome_data.limits.monthly])
+      })
   }, []);
-
-  const getDayTotal = () => {
-    return 0
-  }
-
-  const getWeekTotal = () => {
-    return 0
-  }
-
-  const getMonthTotal = () => {
-    return 0
-  }
 
   const renderSwitch = (pageId) => {
     switch (pageId) {
-    case 1:
-      return <Summary spentValues={[getDayTotal(), getWeekTotal(), getMonthTotal()]} limitValues={limits} />;
-    case 2:
-      return <SpendingPage />;
-    case 3:
-      return <button onClick={() => exportPDF("month", 8, 1, 2022)} className="spendButton">month pdf</button>;
-    default:
-      return <Summary spentValues={[getDayTotal(), getWeekTotal(), getMonthTotal()]} limitValues={limits} />;
-    }
+        case 1:
+          return <Summary spentValues={[1, 2, 3]} limitValues={limits} />;
+        case 2:
+          return <SpendingPage />;
+        case 3:
+          return <Reports />;
+        default:
+          return <Summary spentValues={[1, 2, 3]} limitValues={limits} />;
+        }
   }
 
   const handlePageChange = (pageId) => {

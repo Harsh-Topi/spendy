@@ -25,7 +25,7 @@ export default class InfoGrab extends Component {
         limits: data.limits,
         transaction_info: data.transaction_info
       })
-      if (chrome_data.user_info.first_name !== '' && chrome_data.limits.daily !== -1) {
+      if (chrome_data.user_info.first_name && chrome_data.limits.daily !== -1) {
         let new_state = this.state
         new_state.isUserRegistered = true
         this.setState(new_state)
