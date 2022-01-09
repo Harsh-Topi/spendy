@@ -36,9 +36,9 @@ const MainPage = () => {
 
   const getDayTotal = (dd=undefined, mm=undefined, yyyy=undefined, shortened=false) => {
     let today = new Date();
-    if (!dd) dd = String(today.getDate()).padStart(2, '0');
-    if (!mm) mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    if (!yyyy) yyyy = today.getFullYear();
+    if (!dd) dd = String(today.getDate())
+    if (!mm) mm = String(today.getMonth() + 1)
+    if (!yyyy) yyyy = today.getFullYear()
     let key = mm + '/' + yyyy;
 
     if (transaction_info[key] == undefined) {
@@ -47,43 +47,43 @@ const MainPage = () => {
 
     let days = transaction_info[key].days
     if (days[parseInt(dd)] == undefined) {
-      return 0
+      return 0;
     }
 
     let total = 0
     let items = days[parseInt(dd)]
     for (var item in items) {
-      total += parseFloat(items[item].amount)
+      total += parseFloat(items[item].amount);
     }
     if (shortened) {
-      return shortNumber(parseInt(total.toFixed()))
+      return shortNumber(parseInt(total.toFixed()));
     } else {
-      return parseInt(total.toFixed())
+      return parseInt(total.toFixed());
     }
   }
 
   const getWeekTotal = () => {
     let day = new Date();
-    let total = 0
+    let total = 0;
     for (var i = 0; i < 7; i++) {
-      let dd = String(day.getDate()).padStart(2, '0');
-      let mm = String(day.getMonth() + 1).padStart(2, '0'); //January is 0!
+      let dd = String(day.getDate());
+      let mm = String(day.getMonth() + 1);
       let yyyy = day.getFullYear();
-      total += getDayTotal(dd, mm, yyyy, true)
-      day.setDate(day.getDate()-1)
+      total += getDayTotal(dd, mm, yyyy, true);
+      day.setDate(day.getDate() - 1);
     }
     return shortNumber(parseInt(total.toFixed()))
   }
 
   const getMonthTotal = () => {
     let today = new Date();
-    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let mm = String(today.getMonth() + 1);
     let yyyy = today.getFullYear();
     let key = mm + '/' + yyyy;
     if (transaction_info[key] == undefined) {
       return 0;
     }
-    return shortNumber(parseInt(transaction_info[key].amount_spent.toFixed()))
+    return shortNumber(parseInt(transaction_info[key].amount_spent.toFixed()));
   }
 
   const renderSwitch = (pageId) => {
