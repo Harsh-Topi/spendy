@@ -1,6 +1,6 @@
 /*global chrome*/
 import React from 'react';
-import { exportPDF } from './Reports/pdfexport';
+import { exportPDF } from './Reports/pdfExport';
 
 import '../../styles/info/InfoGlobal.css';
 import '../../styles/info/MainPage.css';
