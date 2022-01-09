@@ -48,7 +48,7 @@ const SpendingPage = ({limits, setLimits, amountSpent}) => {
       daily: dayLimit,
       weekly: weekLimit,
       monthly: monthLimit
-    }
+    };
     chrome.storage.sync.set(chrome_data);
 
     // set limits in the parent component

@@ -62,7 +62,7 @@ const MainPage = () => {
     }
   };
 
-  const getWeekTotal = (shortened=false) => {
+  const getWeekTotal = (shortened = false) => {
     let day = new Date();
     let total = 0;
     for (var i = 0; i < 7; i++) {
@@ -78,7 +78,7 @@ const MainPage = () => {
     } else {
       return parseInt(total.toFixed());
     }
-  }
+  };
 
   const getMonthTotal = (shortened) => {
     let today = new Date();
@@ -94,11 +94,11 @@ const MainPage = () => {
     } else {
       return parseInt(transaction_info[key].amount_spent.toFixed());
     }
-  }
+  };
 
   const getListTotal = () => {
     return [getDayTotal(false), getWeekTotal(false), getMonthTotal(false)];
-  }
+  };
 
   const renderSwitch = (pageId) => {
     switch (pageId) {
