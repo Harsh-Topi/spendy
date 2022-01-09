@@ -10,10 +10,12 @@ import Footer from '../global/Footer';
 import SpendingPage from './SpendingPage';
 
 import Summary from './Summary/Summary'
+import shortNumber from 'short-number';
 
 const MainPage = () => {
   const [currentPage, setCurrentPage] = React.useState(1);
   const [limits, setLimits] = React.useState([])
+  const [transaction_info, setTransactionInfo] = React.useState([])
 
   React.useEffect(() => {
     const chrome_data = {}
@@ -28,19 +30,60 @@ const MainPage = () => {
         chrome_data.limits.weekly,
         chrome_data.limits.monthly
       ])
+      setTransactionInfo(chrome_data.transaction_info)
     });
   }, []);
 
-  const getDayTotal = () => {
-    return 0
+  const getDayTotal = (dd=undefined, mm=undefined, yyyy=undefined, shortened=false) => {
+    let today = new Date();
+    if (!dd) dd = String(today.getDate())
+    if (!mm) mm = String(today.getMonth() + 1)
+    if (!yyyy) yyyy = today.getFullYear()
+    let key = mm + '/' + yyyy;
+
+    if (transaction_info[key] == undefined) {
+      return 0;
+    }
+
+    let days = transaction_info[key].days
+    if (days[parseInt(dd)] == undefined) {
+      return 0;
+    }
+
+    let total = 0
+    let items = days[parseInt(dd)]
+    for (var item in items) {
+      total += parseFloat(items[item].amount);
+    }
+    if (shortened) {
+      return shortNumber(parseInt(total.toFixed()));
+    } else {
+      return parseInt(total.toFixed());
+    }
   }
 
   const getWeekTotal = () => {
-    return 0
+    let day = new Date();
+    let total = 0;
+    for (var i = 0; i < 7; i++) {
+      let dd = String(day.getDate());
+      let mm = String(day.getMonth() + 1);
+      let yyyy = day.getFullYear();
+      total += getDayTotal(dd, mm, yyyy, true);
+      day.setDate(day.getDate() - 1);
+    }
+    return shortNumber(parseInt(total.toFixed()))
   }
 
   const getMonthTotal = () => {
-    return 0
+    let today = new Date();
+    let mm = String(today.getMonth() + 1);
+    let yyyy = today.getFullYear();
+    let key = mm + '/' + yyyy;
+    if (transaction_info[key] == undefined) {
+      return 0;
+    }
+    return shortNumber(parseInt(transaction_info[key].amount_spent.toFixed()));
   }
 
   const renderSwitch = (pageId) => {

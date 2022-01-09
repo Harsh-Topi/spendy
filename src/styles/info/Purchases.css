@@ -3,7 +3,7 @@
 .purchasesContainer {
     display: flex;
     flex-direction: column;
-    height: 345px;
+    height: 379px;
     width: 360px;
     overflow-y: overlay;
 }
