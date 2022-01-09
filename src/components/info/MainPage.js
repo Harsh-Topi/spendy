@@ -12,7 +12,6 @@ import Summary from './Summary/Summary'
 const MainPage = () => {
   const [currentPage, setCurrentPage] = React.useState(1);
   const [limits, setLimits] = React.useState([])
-  // const [transaction_info, setTransactionInfo] = React.useState({})
 
   React.useEffect(() => {
     const chrome_data = {}
@@ -27,7 +26,6 @@ const MainPage = () => {
         chrome_data.limits.weekly,
         chrome_data.limits.monthly
       ])
-      // setTransactionInfo(chrome_data.transaction_info)
     });
   }, []);
 
