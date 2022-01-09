@@ -38,7 +38,7 @@ export async function exportPDF(type) {
   const transaction_info = await getData();
 
   const date = new Date();
-  const target = `${String((date.getMonth() + 1)).padStart(2, '0')}/${date.getFullYear()}`;
+  const target = `${String((date.getMonth() + 1))}/${date.getFullYear()}`;
   const fullMonth = months[date.getMonth()];
 
   const doc = new jsPDF();
@@ -81,7 +81,7 @@ function exportPDFWeek(doc, transaction_info, date, target, fullMonth, y) {
       }
     }
   } else { // 7 days goes over month/year bounds
-    let weekAgoTarget = `${String((weekAgoDate.getMonth() + 1)).padStart(2, '0')}/${weekAgoDate.getFullYear()}`;
+    let weekAgoTarget = `${String((weekAgoDate.getMonth() + 1))}/${weekAgoDate.getFullYear()}`;
 
     if (transaction_info[weekAgoTarget] !== undefined) {
       for (const day in transaction_info[weekAgoTarget]["days"]) {
