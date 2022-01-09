@@ -93,6 +93,10 @@ function uploadItems(chrome_data, items) {
     }
   }
   chrome.storage.sync.set(chrome_data);
+  notifyOverLimit(chrome_data.limits,
+    getDayTotal(chrome_data.transaction_info),
+    getWeekTotal(chrome_data.transaction_info),
+    getMonthTotal(chrome_data.transaction_info));
 }
 
 function doesIdExist(transaction_info, id) {
@@ -107,4 +111,63 @@ function doesIdExist(transaction_info, id) {
     }
   }
   return false;
+}
+
+function notifyOverLimit(limits, dTotal, mTotal, yTotal) {
+  if (limits.daily === -1 || limits.weekly === -1 || limits.monthly === -1) {
+    return;
+  }
+
+  if (limits.daily < dTotal || limits.weekly < mTotal || limits.monthly < yTotal) {
+    let msg = {type: "basic", iconUrl: 'logo512.png', title: "Over Limit", message: "You have gone over one of your spending limits"}
+    chrome.runtime.sendMessage({type: "notification", msg: msg}, function() {});
+  }
+}
+
+const getDayTotal = (transaction_info) => {
+  let today = new Date();
+  dd = String(today.getDate());
+  mm = String(today.getMonth() + 1);
+  yyyy = today.getFullYear();
+  let key = mm + '/' + yyyy;
+
+  if (transaction_info[key] == undefined) {
+    return 0;
+  }
+
+  let days = transaction_info[key].days;
+  if (days[parseInt(dd)] == undefined) {
+    return 0;
+  }
+
+  let total = 0;
+  let items = days[parseInt(dd)];
+  for (let item in items) {
+    total += parseFloat(items[item].amount);
+  }
+  return parseInt(total.toFixed());
+}
+
+const getWeekTotal = (transaction_info) => {
+  let day = new Date();
+  let total = 0;
+  for (let i = 0; i < 7; i++) {
+    let dd = String(day.getDate());
+    let mm = String(day.getMonth() + 1);
+    let yyyy = day.getFullYear();
+    total += getDayTotal(transaction_info);
+    day.setDate(day.getDate() - 1);
+  }
+  return parseInt(total.toFixed());
+}
+
+const getMonthTotal = (transaction_info) => {
+  let today = new Date();
+  let mm = String(today.getMonth() + 1);
+  let yyyy = today.getFullYear();
+  let key = mm + '/' + yyyy;
+  if (transaction_info[key] == undefined) {
+    return 0;
+  }
+  return parseInt(transaction_info[key].amount_spent.toFixed());
 }

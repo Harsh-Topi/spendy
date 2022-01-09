@@ -5,7 +5,7 @@ const PurchaseListing = () => {
 
   // test object
   let testObject = {
-    "01/2022": {
+    "1/2022": {
       amount_spent: 33.33,
       days: {
         1: [

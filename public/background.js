@@ -12,3 +12,14 @@ chrome.runtime.onInstalled.addListener(async () => {
     transaction_info: {}
   });
 });
+
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    if (request.type === "notification") {
+      chrome.notifications.clear("limit", () => {
+        chrome.notifications.create("notify", request.msg, function() {});
+      });
+    }
+    sendResponse();
+  }
+);
