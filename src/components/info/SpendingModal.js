@@ -10,15 +10,15 @@ const SpendingModal = ({limits, amountSpent, closeModal, saveModal}) => {
           <div className="limitContainer">
             <div className="limitEntry">
               <text>Day:</text>
-              <input type="text" value={amountSpent["day"]} />
+              <input type="text" value={amountSpent["day"]} disabled/>
             </div>
             <div className="limitEntry">
               <text>Week:</text>
-              <input type="text" value={amountSpent["week"]} />
+              <input type="text" value={amountSpent["week"]} disabled/>
             </div>
             <div className="limitEntry">
               <text>Month:</text>
-              <input type="text" value={amountSpent["month"]} />
+              <input type="text" value={amountSpent["month"]} disabled/>
             </div>
           </div>
         </div>
