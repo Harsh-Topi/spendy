@@ -27,7 +27,7 @@ export default class InfoGrab extends Component {
       })
       if (chrome_data.user_info.first_name !== '' && chrome_data.limits.daily !== -1) {
         let new_state = this.state
-        new_state.step = 4
+        new_state.isUserRegistered = true
         this.setState(new_state)
       }
     })
