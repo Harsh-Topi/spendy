@@ -1,1 +1,5 @@
-@import '../initial/Global.css'
+@import '../initial/Global.css';
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
