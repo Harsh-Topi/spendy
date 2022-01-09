@@ -37,8 +37,13 @@ async function getData() {
 export async function exportPDF(type, day, month, year) {
   const transaction_info = await getData();
 
-  const target = `${month}/${year}`;
-  const fullMonth = months[month - 1];
+  const date = new Date(year, month - 1, day, 0, 0, 0, 0);
+  const target = `${String((date.getMonth() + 1))}/${date.getFullYear()}`;
+  const fullMonth = months[date.getMonth()];
+
+  console.log(date);
+  console.log(target);
+  console.log(transaction_info[target]);
 
   const doc = new jsPDF();
   writeTitleToPdf(doc, "$pendy Spending Report");
@@ -47,12 +52,6 @@ export async function exportPDF(type, day, month, year) {
   if (transaction_info === undefined || transaction_info[target] === undefined) {
     doc.save("SpendyReport.pdf");
     return;
-  }
-
-  let date = {
-    "year": year,
-    "month": month,
-    "day": day
   }
 
   if (type === 'month') {
@@ -66,7 +65,7 @@ export async function exportPDF(type, day, month, year) {
 }
 
 function exportPDFMonth(doc, monthInfo, fullMonth, y, date) {
-  y = writeToPdf(doc, `${fullMonth} ${date["year"]} Spending Report - Total Spent: $${monthInfo["amount_spent"]}`, y, true);
+  y = writeToPdf(doc, `${fullMonth} ${date.getFullYear()} Spending Report - Total Spent: $${monthInfo["amount_spent"]}`, y, true);
 
   for (const day in monthInfo["days"]) {
     y = writeToPdf(doc,  `${fullMonth} ${day}`, y, true);
@@ -75,13 +74,13 @@ function exportPDFMonth(doc, monthInfo, fullMonth, y, date) {
 }
 
 function exportPDFWeek(doc, transaction_info, target, fullMonth, y, date) {
-  let weekAgoDate = new Date(new Date(date["year"], date["month"] - 1, date["day"], 0, 0, 0, 0).setDate(date["day"] - 7));
+  let weekAgoDate = new Date(new Date(date).setDate(date.getDate() - 7));
 
-  y = writeToPdf(doc, `${months[weekAgoDate.getMonth()]} ${weekAgoDate.getDate() + 1} ${weekAgoDate.getFullYear()} to ${fullMonth} ${date["day"]} ${date["year"]} Spending Report`, y, true);
+  y = writeToPdf(doc, `${months[weekAgoDate.getMonth()]} ${weekAgoDate.getDate() + 1} ${weekAgoDate.getFullYear()} to ${fullMonth} ${date.getDate()} ${date.getFullYear()} Spending Report`, y, true);
 
-  if (fullMonth === months[weekAgoDate.getMonth()]) {
+  if (date.getMonth() === weekAgoDate.getMonth()) {
     for (const day in transaction_info[target]["days"]) {
-      if (weekAgoDate.getDate() < day && day <= date["day"]) {
+      if (weekAgoDate.getDate() < day && day <= date.getDate()) {
         y = writeToPdf(doc,  `${fullMonth} ${day}`, y, true);
         y = writeItemsFromDay(doc, transaction_info[target]["days"][day], y);
       }
@@ -99,7 +98,7 @@ function exportPDFWeek(doc, transaction_info, target, fullMonth, y, date) {
     }
 
     for (const day in transaction_info[target]["days"]) {
-      if (day <= date["day"]) {
+      if (day <= date.getDate()) {
         y = writeToPdf(doc, `${fullMonth} ${day}`, y, true);
         y = writeItemsFromDay(doc, transaction_info[target]["days"][day], y);
       }
@@ -109,8 +108,8 @@ function exportPDFWeek(doc, transaction_info, target, fullMonth, y, date) {
 
 function exportPDFDay(doc, days, fullMonth, y, date) {
   for (const day in days) {
-    if (day === String(date["day"])) {
-      y = writeToPdf(doc, `${fullMonth} ${date["day"]} ${date["year"]} Spending Report`, y, true);
+    if (day === String(date.getDate())) {
+      y = writeToPdf(doc, `${fullMonth} ${date.getDate()} ${date.getFullYear()} Spending Report`, y, true);
       y = writeItemsFromDay(doc, days[day], y);
       return;
     }
