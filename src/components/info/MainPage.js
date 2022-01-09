@@ -1,6 +1,5 @@
 /*global chrome*/
 import React from 'react';
-import { exportPDF } from './Reports/pdfExport';
 
 import '../../styles/info/InfoGlobal.css';
 import '../../styles/info/MainPage.css';
@@ -11,7 +10,7 @@ import SpendingPage from './SpendingPage';
 
 import Summary from './Summary/Summary';
 
-import Reports from './Reports/Reports'
+import Reports from './Reports/Reports';
 import shortNumber from 'short-number';
 
 const MainPage = () => {

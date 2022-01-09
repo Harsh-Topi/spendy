@@ -50,9 +50,9 @@ export async function exportPDF(type, day, month, year) {
     return;
   }
 
-  if (type === 'month') {
+  if (type === 'Monthly') {
     exportPDFMonth(doc, transaction_info[target], fullMonth, y, date);
-  } else if (type === 'week') {
+  } else if (type === 'Weekly') {
     exportPDFWeek(doc, transaction_info, target, fullMonth, y, date);
   } else { // type === 'day'
     exportPDFDay(doc, transaction_info[target]["days"], fullMonth, y, date);
@@ -72,7 +72,7 @@ function exportPDFMonth(doc, monthInfo, fullMonth, y, date) {
 function exportPDFWeek(doc, transaction_info, target, fullMonth, y, date) {
   let weekAgoDate = new Date(new Date(date).setDate(date.getDate() - 7));
 
-  y = writeToPdf(doc, `${months[weekAgoDate.getMonth()]} ${weekAgoDate.getDate() + 1} ${weekAgoDate.getFullYear()} to ${fullMonth} ${date.getDate()} ${date.getFullYear()} Spending Report`, y, true);
+  y = writeToPdf(doc, `${months[weekAgoDate.getMonth()]} ${weekAgoDate.getDate()} ${weekAgoDate.getFullYear()} to ${fullMonth} ${date.getDate()} ${date.getFullYear()} Spending Report`, y, true);
 
   if (date.getMonth() === weekAgoDate.getMonth()) {
     for (const day in transaction_info[target]["days"]) {
