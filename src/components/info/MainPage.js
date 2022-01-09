@@ -48,7 +48,7 @@ const MainPage = () => {
     case 1:
       return <Summary spentValues={[getDayTotal(), getWeekTotal(), getMonthTotal()]} limitValues={limits} />;
     case 2:
-      return <SpendingPage />;
+      return <SpendingPage limits={limits} setLimits={setLimits}/>;
     case 3:
       return <button onClick={() => exportPDF("month", 8, 1, 2022)} className="spendButton">month pdf</button>;
     default:
