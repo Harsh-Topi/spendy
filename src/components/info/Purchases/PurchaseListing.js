@@ -20,8 +20,8 @@ const PurchaseListing = () => {
 
   let purchaseHistory = [];
   for (const month in transaction_info) {
-    let test = transaction_info[month]
-    let days = test['days'];
+    let data = transaction_info[month]
+    let days = data['days'];
     for (const day in days) {
       let dayTotal = 0;
       let theDay = days[day]
