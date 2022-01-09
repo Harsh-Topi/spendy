@@ -10,15 +10,15 @@ const SpendingModal = ({limits, amountSpent, closeModal, saveModal}) => {
           <div className="limitContainer">
             <div className="limitEntry">
               <text>Day:</text>
-              <input type="text" value={amountSpent["day"]} />
+              <input type="text" value={amountSpent[0]} disabled/>
             </div>
             <div className="limitEntry">
               <text>Week:</text>
-              <input type="text" value={amountSpent["week"]} />
+              <input type="text" value={amountSpent[1]} disabled/>
             </div>
             <div className="limitEntry">
               <text>Month:</text>
-              <input type="text" value={amountSpent["month"]} />
+              <input type="text" value={amountSpent[2]} disabled/>
             </div>
           </div>
         </div>
@@ -27,15 +27,15 @@ const SpendingModal = ({limits, amountSpent, closeModal, saveModal}) => {
           <form onSubmit={saveModal}>
             <div className="limitEntry">
               <text>Day:</text>
-              <input id="dayLimit" defaultValue={limits["day"]} required="true" type="number" min="0"/>
+              <input id="dayLimit" defaultValue={limits[0]} required="true" type="number" min="0"/>
             </div>
             <div className="limitEntry">
               <text>Week:</text>
-              <input id="weekLimit" defaultValue={limits["week"]} required="true" type="number" min="0"/>
+              <input id="weekLimit" defaultValue={limits[1]} required="true" type="number" min="0"/>
             </div>
             <div className="limitEntry">
               <text>Month:</text>
-              <input id="monthLimit" defaultValue={limits["month"]} required="true" type="number" min="0"/>
+              <input id="monthLimit" defaultValue={limits[2]} required="true" type="number" min="0"/>
             </div>
             <div className="limitSave">
               <button>
