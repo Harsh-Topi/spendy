@@ -4,7 +4,9 @@
 
 ---
 ### 💸 Won 1st place overall @ Hack the Job! 💸
-A browser extension for keeping on top of your finances. This project will keep track of the purchases you make online, and allow you to view charts and comprehensive reports to see how you spent your money. You can also set spending limits on a daily, weekly, and monthly basis and get notified if you overspend.
+A browser extension for keeping on top of your finances. This project will keep track of the purchases you make online, and allow you to view charts and comprehensive reports to see how you spent your money. You can also set spending limits on a daily, weekly, and monthly basis and get notified if you overspend
+
+Figma - https://www.figma.com/file/krRMSbAnuVKVt6oV2IVy3a/Untitled?node-id=0%3A1
 
 ## Installation
 
