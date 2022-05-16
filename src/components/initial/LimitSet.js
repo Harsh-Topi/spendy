@@ -1,68 +1,128 @@
 /*global chrome*/
-import React from 'react';
-import '../../styles/initial/DataCollection.css';
+import React, { useState } from "react";
+import "../../styles/initial/DataCollection.css";
 
-const LimitSet = ({ prevStep, nextStep, handleChange, values }) => {
+import { Input, FormControl } from "@chakra-ui/react";
+
+const LimitSet = ({ prevStep, nextStep }) => {
+  // Hooks
+  const [inputs, setInputs] = useState({});
+  const [inputValidity, setInputValidity] = useState({});
 
   const chrome_data = {};
   chrome.storage.sync.get(null, (data) => {
     Object.assign(chrome_data, {
       user_info: data.user_info,
       limits: data.limits,
-      transaction_info: data.transaction_info
+      transaction_info: data.transaction_info,
     });
   });
 
-  const Previous = e => {
-    e.preventDefault();
-    prevStep();
+  // Event handlers
+  const handleUpdate = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs((values) => ({ ...values, [name]: value }));
   };
 
-  const Continue = e => {
-    e.preventDefault();
-    let d_limit = parseInt(document.getElementById('dLimit').value);
-    let w_limit = parseInt(document.getElementById('wLimit').value);
-    let m_limit = parseInt(document.getElementById('mLimit').value);
-    if (d_limit !== '' && w_limit !== '' && m_limit !== '') {
+  // Handle submission
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    console.log(inputs);
+    // validate input
+    let inputChecks = {};
+    inputChecks.dLimit =
+      inputs.dLimit === "" ||
+      (!Number.isNaN(inputs.dLimit) && inputs.dLimit > 0);
+    inputChecks.wLimit =
+      inputs.wLimit === "" ||
+      (!Number.isNaN(inputs.wLimit) && inputs.wLimit > 0);
+    inputChecks.mLimit =
+      inputs.mLimit === "" ||
+      (!Number.isNaN(inputs.mLimit) && inputs.mLimit > 0);
+    inputChecks.submittedOnce = true;
+
+    // Sync data if valid
+    if (Object.values(inputChecks).every((x) => x === true)) {
       chrome_data.limits = {
-        daily: d_limit,
-        weekly: w_limit,
-        monthly: m_limit
+        daily: inputs.dLimit,
+        weekly: inputs.wLimit,
+        monthly: inputs.mLimit,
       };
       chrome.storage.sync.set(chrome_data);
       nextStep();
     } else {
-      // TODO: notify user
+      setInputValidity(inputChecks);
     }
+  };
+
+  const Previous = (e) => {
+    e.preventDefault();
+    prevStep();
+  };
+
+  // Validation methods
+  const limitCheck = (limitType) => {
+    return inputValidity["submittedOnce"] && !inputValidity[limitType];
   };
 
   return (
     <div>
-      <div className="mainContainer">
+      <div className="mainContainer" style={{ padding: 0 }}>
         <div className="header">
           <button onClick={Previous} className="headerBackButton">
-            &lt; Back
+            &lt;
           </button>
         </div>
-        <div className="formContainer">
-          <span className="title">Set some limits.</span>
-          <div className="inputs">
-            <label htmlFor="dLimit" className="inputLabel">
-              Daily Limit
-            </label>
-            <input defaultValue={values.dLimit} onChange={handleChange('dLimit')} className="input" type="number" min="0" id="dLimit" name="dLimit" />
-            <label htmlFor="wLimit" className="inputLabel">
-              Weekly Limit
-            </label>
-            <input defaultValue={values.wLimit} onChange={handleChange('wLimit')} className="input" type="number" min="0" id="wLimit" name="wLimit" />
-            <label htmlFor="mLimit" className="inputLabel">
-              Monthly Limit
-            </label>
-            <input defaultValue={values.mLimit} onChange={handleChange('mLimit')} className="input" type="number" min="0" id="mLimit" name="mLimit" />
+        <div className="mainContainer">
+          <div className="formContainer">
+            <span className="title">Set some limits!</span>
+            <span className="subTitle">You can also set limits later.</span>
+            <div className="inputs">
+              <FormControl isInvalid={limitCheck("dLimit")}>
+                <Input
+                  id="dLimit"
+                  name="dLimit"
+                  className="limitInput"
+                  placeholder="Daily Limit"
+                  size="md"
+                  onChange={handleUpdate}
+                  value={inputs.dLimit || ""}
+                />
+              </FormControl>
+              <FormControl isInvalid={limitCheck("wLimit")}>
+                <Input
+                  id="wLimit"
+                  name="wLimit"
+                  className="limitInput"
+                  placeholder="Weekly Limit"
+                  size="md"
+                  onChange={handleUpdate}
+                  value={inputs.wLimit || ""}
+                />
+              </FormControl>
+              <FormControl isInvalid={limitCheck("mLimit")}>
+                <Input
+                  id="mLimit"
+                  name="mLimit"
+                  className="limitInput"
+                  placeholder="Monthly Limit"
+                  size="md"
+                  onChange={handleUpdate}
+                  value={inputs.mLimit || ""}
+                />
+              </FormControl>
+            </div>
           </div>
-          <div className="nextContainer">
-            <button onClick={Continue} className="button" id='next-btn'>Next</button>
-          </div>
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            className="button"
+            id="next-btn"
+          >
+            Sign Up!
+          </button>
         </div>
       </div>
     </div>

@@ -1,12 +1,13 @@
-import React from 'react';
-import './App.css';
-import InfoGrab from './components/InfoGrab';
+import React from "react";
+import "./App.css";
+import InfoGrab from "./components/InfoGrab";
+import { ChakraProvider } from "@chakra-ui/react";
 
 function App() {
   return (
-    <div>
+    <ChakraProvider>
       <InfoGrab />
-    </div>
+    </ChakraProvider>
   );
 }
 

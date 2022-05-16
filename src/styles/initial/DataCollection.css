@@ -1,23 +1,33 @@
 @import "Global.css";
 
+
 .formContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 55px;
+    margin-top: 80px;
 }
 
 .title {
     font-family: 'Roboto', sans-serif;
-    font-size: 36px;
+    font-size: 40px;
     font-weight: bold;
-    margin-left: 25px;
-    color: white;
+    color: rgba(0, 0, 0, 0.75);
+}
+
+.subTitle {
+    margin-bottom: 35px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .input { 
     background-color: rgba(255,255,255, 0.2);
-    color: white;
+    color: black;
     font-weight: 600;
     border-radius: 5px;
     border: none;
@@ -27,23 +37,49 @@
 
 .inputs {
     display: flex;
-    flex-direction: column;
-    padding-left: 25px;
-    padding-right: 25px;
-    margin-top: 40px;
+    flex-direction: column;    
 }
 
 .inputLabel {
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
     font-weight: 700;
-    color: white;
+    color: black;
     margin-top: 24px;
     margin-bottom: 5px;
 }
 
-.nextContainer {
-    margin-top: 40px;
-    padding-left: 25px;
-    padding-top: 40px;
+.firstNameInput {
+    border-radius: 5px 5px 0 0 !important;
 }
+
+.lastNameInput {
+    border-radius: 0 0 5px 5px !important;
+    margin-bottom: 20px;
+}
+
+.emailInput {
+    border-radius: 5px !important;
+    margin-bottom: 8px;
+}
+
+.passwordInput {
+    border-radius: 5px !important;
+}
+
+.limitInput {
+    border-radius: 5px !important;
+    margin-bottom: 20px;
+}
+
+
+.emailSubText {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 10px;
+    line-height: 10px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-bottom: 25px;
+}
+
