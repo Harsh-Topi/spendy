@@ -86,7 +86,7 @@ const WhoAreYou = ({ prevStep, nextStep }) => {
           &lt;
         </button>
       </div>
-      <div className="mainContainer">
+      <div className="mainSecondaryContainer">
         <div className="formContainer">
           <span className="title">Who are you?</span>
           <span className="subTitle">I'm Spendy! Nice to meet you.</span>

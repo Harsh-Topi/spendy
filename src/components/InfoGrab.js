@@ -52,9 +52,7 @@ export default class InfoGrab extends Component {
   render() {
     if (!this.state.isUserRegistered) {
       const { step } = this.state;
-      const { firstName, email, dLimit, wLimit, mLimit } = this.state;
-      const values = { firstName, email, dLimit, wLimit, mLimit };
-
+      
       switch (step) {
         case 1:
           return <HomeScreen nextStep={this.nextStep} />;

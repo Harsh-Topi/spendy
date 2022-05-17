@@ -75,7 +75,7 @@ const LimitSet = ({ prevStep, nextStep }) => {
             &lt;
           </button>
         </div>
-        <div className="mainContainer">
+        <div className="mainSecondaryContainer">
           <div className="formContainer">
             <span className="title">Set some limits!</span>
             <span className="subTitle">You can also set limits later.</span>

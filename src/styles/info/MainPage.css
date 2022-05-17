@@ -3,23 +3,27 @@
 .main {
     display: flex;
     flex-direction: column;
+    /* justify-content: space-between; */
+    width: 360px;
+    height: 600px;
+    padding: 0 20px 25px 20px;
 }
 
-.headerContainer {
+.mainSecondary {  
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    flex-grow: 1;
     width: 360px;
-    height: 62px;
-    /* background-color: lightblue; */
-    border-bottom: 1px solid gainsboro;
+    padding: 0 20px 25px 20px;
 }
 
 .dataContainer {
     display: flex;
     flex-direction: column;
-    height: 470px;
     width: 360px;
-    /* background-color: lightcoral; */
+    height: 100%;
+    background-color: lightcoral;
 }
 
 .navFooter {

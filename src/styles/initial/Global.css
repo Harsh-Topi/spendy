@@ -7,6 +7,16 @@
     padding: 0 20px 25px 20px;
 }
 
+.mainSecondaryContainer {  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* height: 540px; */
+    flex-grow: 1;
+    width: 360px;
+    padding: 0 20px 25px 20px;
+}
+
 .header {
     display: flex;
     width: 100%;

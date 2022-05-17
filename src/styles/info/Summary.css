@@ -2,18 +2,10 @@
 
 .limitsContainer {
     display: flex;
+    /* margin-bottom: 30px; */
     align-items: center;
-    justify-content: space-evenly;
-    height: 90px;
-    width: 360px;
-    border-bottom-style: solid;
-    border-bottom-color: gainsboro;
-    border-width: 1px;
-}
-
-.bubbleContainer {
-    display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .bubble {
@@ -21,21 +13,49 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 105px;
+    width: 100px;
     height: 70px;
     border-radius: 5px;
 }
 
-.bubbleNums{ 
+.bubbleNums { 
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
     color: white;
     font-weight: 600;
 }
 
-.bubbleText{ 
+.bubbleText { 
     font-family: 'Roboto', sans-serif;
     font-size: 12px;
     color: white;
     font-weight: 600;
+}
+
+.sectionHeader {
+    display: flex;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.sectionHeaderText {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.sectionHeaderButton {
+    padding: 0; 
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: rgba(0, 0, 0, 0.75);;
+    font-size: 20px;
 }
