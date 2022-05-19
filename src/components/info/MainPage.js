@@ -119,7 +119,7 @@ const MainPage = () => {
   };
 
   return (
-    <div className="main" style={{ padding: 0 }}>
+    <div style={{ width: '360px', padding: 0 }}>
       <Header />
       {renderSwitch(currentPage)}
       {/* <Footer setCurrentPage={handlePageChange} /> */}

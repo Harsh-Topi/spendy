@@ -4,6 +4,51 @@ import '../../../styles/info/Summary.css';
 
 const PurchaseListing = () => {
 
+    // test object
+    let testObject = {
+      "01/2022": {
+        amount_spent: 33.33,
+        days: {
+          1: [
+            {
+              id: 1,
+              amount: 33.99,
+              timestamp: 24,
+              item_desc: "Big Blue pants with pockets and stuff ",
+              image_url: "https://picsum.photos/seed/picsum/200/300",
+              website: "adadadaa"
+            },
+            {
+              id: 2,
+              amount: 33.99,
+              timestamp: 24,
+              item_desc: "Big Blue pants with pockets and stuff ",
+              image_url: "https://picsum.photos/seed/picsum/200/300",
+              website: "adadadaa"
+            },
+            {
+              id: 2,
+              amount: 33.99,
+              timestamp: 24,
+              item_desc: "Big Blue pants with pockets and stuff ",
+              image_url: "https://picsum.photos/seed/picsum/200/300",
+              website: "adadadaa"
+            }
+          ],
+          2: [
+            {
+              id: 4,
+              amount: 33.99,
+              timestamp: 24,
+              item_desc: "Big Blue pants with pockets and stuff ",
+              image_url: "https://picsum.photos/seed/picsum/200/300",
+              website: "adadadaa"
+            },
+          ]
+        }
+      }
+    }
+
   const [transaction_info, setTransactionInfo] = React.useState([]);
 
   React.useEffect(() => {
@@ -18,17 +63,18 @@ const PurchaseListing = () => {
     });
   }, []);
 
-  if (Object.keys(transaction_info).length == 0) {
-    return (
-      <div className="no-items-banner">
-        No items found
-      </div>
-    );
-  }
+  // if (Object.keys(transaction_info).length == 0) {
+  //   return (
+  //     <div className="no-items-banner">
+  //       No items found
+  //     </div>
+  //   );
+  // }
 
   let purchaseHistory = [];
-  for (const month in transaction_info) {
-    let data = transaction_info[month];
+  for (const month in testObject) {
+    let data = testObject[month];
+    console.log(data)
     let days = data['days'];
     for (const day in days) {
       let dayTotal = 0;
@@ -52,16 +98,20 @@ const PurchaseListing = () => {
         );
       }
 
-      let header =
-                <div className="dayHeader">
-                  <span className="dateText">{day.concat("/" + month)}</span>
-                  <span className="amountText">${Math.round(dayTotal * 100) / 100}</span>
-                </div>;
+      // let header =
+      //           <div className="dayHeader">
+      //             <span className="dateText">{day.concat("/" + month)}</span>
+      //             <span className="amountText">${Math.round(dayTotal * 100) / 100}</span>
+      //           </div>;
 
-      purchaseHistory.push(header);
+      // purchaseHistory.push(header);
 
       let transactionList =
                 <div className="transactionContainer">
+                                  <div className="dayHeader">
+                  <span className="headerText">{day.concat("/" + month)}</span>
+                  <span className="headerText">${Math.round(dayTotal * 100) / 100}</span>
+                </div>
                   {purchases.map(item => {
                     return item;
                   })}

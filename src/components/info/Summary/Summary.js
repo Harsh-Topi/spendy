@@ -36,7 +36,7 @@ const Summary = ({ spentValues, limitValues }) => {
   
 
   return (
-    <div class="mainSecondary">
+    <div style={{padding: '0 20px 25px 20px'}}>
       <SectionHeader text="Your Spending" buttonIcon={limitEditIcon} buttonAction={() => console.log('input')} />
       <div className="limitsContainer">
         <LimitBubble color="#1BC8FF" spent={spentValues[0]} limit={limitValues[0]} interval="Day" />

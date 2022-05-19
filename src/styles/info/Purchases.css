@@ -23,44 +23,47 @@
 
 .dayHeader {
     display: flex;
-    width: 360px;
+    width: 100%;
     height: 27px;
     justify-content: space-between;
     align-items: center;
-    background-color: #328FF8;
+    padding: 0px 3px;
 }
 
-.dateText {
-    font-family: 'Roboto', sans-serif;
-    font-size: 15px;
-    margin-left: 11px;
-    color: white;
-    font-weight: bold;
+.headerText {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    color: rgba(0, 0, 0, 0.5);
 }
 
-.amountText {
-    font-family: 'Roboto', sans-serif;
-    font-size: 15px;
-    margin-right: 11px;
-    color: white;
-    font-weight: bold;
-}
+/* .amountText {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+} */
 
 .transactionContainer {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    width: 360px;
     padding-bottom: 15px;
     align-items: center;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 5px;
+    padding: 0 7px 7px;
+    margin-bottom: 20px;
 }
 
 .transactionListing {
     display: flex;
     border-radius: 5px;
-    width: 338px;
     height: 75px;
-    margin-top: 11px;
+    margin-bottom: 10px;
     justify-content: space-between;
     align-items: center;
     background-color: white;
@@ -80,9 +83,12 @@
     justify-content: flex-start !important;
     justify-content: center;
     align-items: center;
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: rgba(0, 0, 0, 0.75);    
     overflow: hidden;
     text-overflow: ellipsis;
     height: 65px;
@@ -92,7 +98,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
     font-weight: bold;
     margin: 0 9px 0 9px;
