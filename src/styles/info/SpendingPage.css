@@ -1,3 +1,5 @@
+@import './InfoGlobal.css';
+
 .spendingContainer {
   display: flex;
   flex-direction: column;
@@ -98,38 +100,64 @@
   height: 100%; /* Full height */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 25px;
+  color: lightcoral;
+}
+
+.modalTitle {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 0.75);
 }
 
 /* Modal Content/Box */
 .modalContent {
   background-color: #fefefe;
-  margin: 10% auto; /* 15% from the top and centered */
-  padding: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 30px 20px;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
   border-radius: 10px;
+  height: 370px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalHeaderCloseButton {
+  padding: 0; 
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  color: rgba(0, 0, 0, 0.75);;
+  font-size: 20px;
 }
 
 /* The Close Button */
 .close {
   color: #aaa;
-  float: right;
-  font-size: 28px;
+  font-size: 20px;
   font-weight: bold;
 }
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-} 
 
 .limitContainer {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  margin-top: 35px;
 }
 
 .limitEntry {
@@ -171,4 +199,20 @@
   padding: 10px;
   padding-left: 20px;
   padding-right: 20px;
+}
+
+
+
+.dLimitInput {
+  border-radius: 5px !important;
+  margin-bottom: 20px;
+}
+
+.wLimitInput {
+  border-radius: 5px !important;
+  margin-bottom: 20px;
+}
+
+.mLimitInput {
+  border-radius: 5px !important;
 }

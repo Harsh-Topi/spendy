@@ -98,14 +98,6 @@ const PurchaseListing = () => {
         );
       }
 
-      // let header =
-      //           <div className="dayHeader">
-      //             <span className="dateText">{day.concat("/" + month)}</span>
-      //             <span className="amountText">${Math.round(dayTotal * 100) / 100}</span>
-      //           </div>;
-
-      // purchaseHistory.push(header);
-
       let transactionList =
                 <div className="transactionContainer">
                                   <div className="dayHeader">
@@ -129,6 +121,8 @@ const PurchaseListing = () => {
         })
       }
     </div>
+
+    
   );
 };
 

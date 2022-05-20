@@ -5,10 +5,12 @@ import "../../../styles/info/Purchases.css";
 import LimitBubble from "./LimitBubble";
 import PurchaseListing from "../Purchases/PurchaseListing";
 import SectionHeader from "./SectionHeader";
+import AddItem from '../../modals/AddItem.js'
+
 
 import shortNumber from "short-number";
 
-const Summary = ({ spentValues, limitValues }) => {
+const Summary = ({ spentValues, limitValues, chrome_data }) => {
   spentValues = spentValues.map((value) => {
     if (value >= 1000) {
       return shortNumber(parseInt(value));
@@ -33,11 +35,41 @@ const Summary = ({ spentValues, limitValues }) => {
   <path d="M14 8H8V14H6V8H0V6H6V0H8V6H14V8Z" fill="black" fill-opacity="0.75"/>
   </svg>
 
+const showModal = () => {
+  let modal = document.getElementById("spendingModal");
+  modal.style.display = "flex";
+};
+
+const closeModal = () => {
+  let modal = document.getElementById("spendingModal");
+  modal.style.display = "none";
+};
+
+const saveModal = (e) => {
+  e.preventDefault();
+
+  // let modal = document.getElementById("spendingModal");
+  // let dayLimit = parseInt(document.getElementById("dayLimit").value);
+  // let weekLimit = parseInt(document.getElementById("weekLimit").value);
+  // let monthLimit = parseInt(document.getElementById("monthLimit").value);
+
+  // chrome_data.limits = {
+  //   daily: dayLimit,
+  //   weekly: weekLimit,
+  //   monthly: monthLimit
+  // };
+  // chrome.storage.sync.set(chrome_data);
+
+  // // set limits in the parent component
+  // setLimits([dayLimit, weekLimit, monthLimit]);
+
+  // modal.style.display = "none";
+};
   
 
   return (
     <div style={{padding: '0 20px 25px 20px'}}>
-      <SectionHeader text="Your Spending" buttonIcon={limitEditIcon} buttonAction={() => console.log('input')} />
+      <SectionHeader text="Your Spending" buttonIcon={limitEditIcon} buttonAction={() => showModal()} />
       <div className="limitsContainer">
         <LimitBubble color="#1BC8FF" spent={spentValues[0]} limit={limitValues[0]} interval="Day" />
         <LimitBubble color="#06D6A0" spent={spentValues[1]} limit={limitValues[1]} interval="Week" />
@@ -47,6 +79,8 @@ const Summary = ({ spentValues, limitValues }) => {
       <div className="purchasesContainer">
         <PurchaseListing />
       </div>
+
+      <AddItem closeModal={closeModal} saveModal={saveModal} />
     </div>
   );
 };
