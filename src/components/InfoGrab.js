@@ -5,6 +5,10 @@ import WhoAreYou from "./initial/WhoAreYou";
 import HomeScreen from "./initial/HomeScreen";
 import MainPage from "./info/MainPage";
 
+import axios from "axios";
+
+import { getUserTokens } from "../helpers/chromeAPI";
+
 export default class InfoGrab extends Component {
   state = {
     step: 1,
@@ -16,37 +20,33 @@ export default class InfoGrab extends Component {
     isUserRegistered: false,
   };
 
-  componentDidMount = () => {
-    const chrome_data = {};
-    chrome.storage.sync.get(null, (data) => {
-      Object.assign(chrome_data, {
-        user_info: data.user_info,
-        limits: data.limits,
-        transaction_info: data.transaction_info,
-      });
-      if (
-        chrome_data.user_info.first_name !== "" &&
-        chrome_data.limits.daily !== -1
-      ) {
-        let new_state = this.state;
-        new_state.isUserRegistered = true;
-        this.setState(new_state);
+  componentDidMount = async () => {
+    
+    let new_state = this.state;
+
+    chrome.runtime.onMessage.addListener(
+      async (request) => {
+        if (request.type === "Authenticated") {
+          const tokens = await getUserTokens();
+          let config = {
+            headers: {
+              Authorization : tokens.id_token
+            }
+          };
+          axios.get('https://bjphjklrrf.execute-api.us-east-1.amazonaws.com/spendyProd/user/userinfo', config).then(
+            userData => {
+              new_state.step = userData.data.is_new_user ? 3 : 4;
+              this.setState(new_state);
+            }
+          )
+        }
       }
-    });
+    );
   };
 
-  prevStep = () => {
+  jumpToMainPage = () => {
     const { step } = this.state;
-    this.setState({ step: step - 1 });
-  };
-
-  nextStep = () => {
-    const { step } = this.state;
-    this.setState({ step: step + 1 });
-  };
-
-  handleChange = (input) => (event) => {
-    this.setState({ [input]: event.target.value });
+    this.setState({ step: step + 1});
   };
 
   render() {
@@ -55,13 +55,9 @@ export default class InfoGrab extends Component {
       
       switch (step) {
         case 1:
-          return <HomeScreen nextStep={this.nextStep} />;
-        case 2:
-          return (
-            <WhoAreYou prevStep={this.prevStep} nextStep={this.nextStep} />
-          );
+          return <HomeScreen />;
         case 3:
-          return <LimitSet prevStep={this.prevStep} nextStep={this.nextStep} />;
+          return <LimitSet jumpToMainPage={this.jumpToMainPage} />;
         case 4:
           return <MainPage />;
         default:

@@ -7,6 +7,9 @@
     "default_popup": "index.html",
     "default_title": "Open Spendy"
   },
+  "externally_connectable": {
+    "matches": ["https://harshtopi.com/*", "http://localhost:3000/*"]
+  },
   "icons": {
     "16": "logo192.png",
     "48": "logo192.png",

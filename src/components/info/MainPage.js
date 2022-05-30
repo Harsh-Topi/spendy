@@ -33,6 +33,7 @@ const MainPage = () => {
       ]);
       setTransactionInfo(chrome_data.transaction_info);
     });
+
   }, []);
 
   const getDayTotal = (dd = undefined, mm = undefined, yyyy = undefined, shortened = false) => {

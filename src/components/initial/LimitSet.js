@@ -4,7 +4,7 @@ import "../../styles/initial/DataCollection.css";
 
 import { Input, FormControl } from "@chakra-ui/react";
 
-const LimitSet = ({ prevStep, nextStep }) => {
+const LimitSet = ({ jumpToMainPage }) => {
   // Hooks
   const [inputs, setInputs] = useState({});
   const [inputValidity, setInputValidity] = useState({});
@@ -51,15 +51,14 @@ const LimitSet = ({ prevStep, nextStep }) => {
         monthly: inputs.mLimit,
       };
       chrome.storage.sync.set(chrome_data);
-      nextStep();
+      jumpToMainPage();
     } else {
       setInputValidity(inputChecks);
     }
   };
 
-  const Previous = (e) => {
-    e.preventDefault();
-    prevStep();
+  const updateDb = () => {
+    
   };
 
   // Validation methods
@@ -67,14 +66,11 @@ const LimitSet = ({ prevStep, nextStep }) => {
     return inputValidity["submittedOnce"] && !inputValidity[limitType];
   };
 
+
   return (
     <div>
       <div className="mainContainer" style={{ padding: 0 }}>
-        <div className="header">
-          <button onClick={Previous} className="headerBackButton">
-            &lt;
-          </button>
-        </div>
+        <div className="header" />
         <div className="mainSecondaryContainer">
           <div className="formContainer">
             <span className="title">Set some limits!</span>
